@@ -9,7 +9,7 @@
 /*   Updated: 2023/03/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_putstr(char *str)
+int	ft_strlen(char *str)
 {
 	int	index;
 

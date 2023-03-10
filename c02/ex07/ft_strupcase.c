@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 15:51:51 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 15:51:55 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/03/08 20:33:39 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/03/08 20:33:52 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+/*#include <stdio.h>*/
 
-void	ft_putstr(char *str)
+char	*ft_strupcase(char *str)
 {
-	while (*str != '\0')
+	int	index;
+
+	index = 0;
+	while (str[index] != '\0')
 	{
-		write(1, str, 1);
-		str++;
+		if (str[index] >= 97 && str[index] <= 122)
+		{
+			str[index] = (str[index] - 32);
+		}
+		index++;
 	}
+	return (str);
 }
-/*
-int main()
+
+/*int main()
 {
-	char string[10] = "teste";
-	ft_putstr(string);
+	char teste[20] = "2131dasdasdasdDDD";
+	printf("%s\n",ft_strupcase(teste));
 }*/

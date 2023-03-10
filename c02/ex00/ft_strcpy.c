@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 15:51:51 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 15:51:55 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/03/07 20:32:51 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/03/07 20:33:07 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+/*#include <stdio.h>*/
 
-void	ft_putstr(char *str)
+char	*ft_strcpy(char *dest, char *src)
 {
-	while (*str != '\0')
+	while (*src != '\0')
 	{
-		write(1, str, 1);
-		str++;
+		*dest = *src;
+		dest++;
+		src++;
 	}
+	*dest = '\0';
+	return (dest);
 }
-/*
-int main()
+
+/*int main()
 {
-	char string[10] = "teste";
-	ft_putstr(string);
+	char teste[] = "123456";
+	char teste2[20];
+
+	ft_strcpy(teste2, teste);
+	
+	printf("%s\n", teste2);
 }*/

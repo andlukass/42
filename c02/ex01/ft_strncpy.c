@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 15:51:51 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 15:51:55 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/03/07 20:56:19 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/03/07 20:56:21 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putstr(char *str)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	while (*str != '\0')
+	int index;
+
+	index = 0;
+	while (index < n && src[index] != '\0')
 	{
-		write(1, str, 1);
-		str++;
+		dest[index] = src[index];
+		index++;
+		//printf("%s\n", dest);
 	}
+	
+	while(index < n)
+	{
+		dest[index] = '\0';
+		index++;
+	}
+	
+	return (dest);
 }
-/*
-int main()
+
+int	main()
 {
-	char string[10] = "teste";
-	ft_putstr(string);
-}*/
+	char string[] = "abcdef";
+	char receber[20];
+	int n = 6;
+
+	ft_strncpy(receber, string, n);
+
+	printf("%s\n", receber);
+}

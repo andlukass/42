@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 15:51:51 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 15:51:55 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/03/08 20:33:39 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/03/08 20:33:52 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+/*#include <stdio.h>*/
 
-void	ft_putstr(char *str)
+int	ft_str_is_numeric(char *str)
 {
-	while (*str != '\0')
+	int	index;
+	int	result;
+
+	result = 1;
+	index = 0;
+	while (str[index] != '\0')
 	{
-		write(1, str, 1);
-		str++;
+		if (str[index] >= 48 && str[index] <= 57)
+		{
+			result = 1;
+		}
+		else
+		{
+			return (0);
+		}
+		index++;
 	}
+	return (result);
 }
-/*
-int main()
+/*int main()
 {
-	char string[10] = "teste";
-	ft_putstr(string);
+	char teste[20] = "1dasd20";
+	printf("%d\n",ft_str_is_numeric(teste));
 }*/

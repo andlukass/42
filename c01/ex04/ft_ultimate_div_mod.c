@@ -9,8 +9,6 @@
 /*   Updated: 2023/03/06 14:08:06 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-
 void	ft_ultimate_div_mod(int *a, int *b)
 {
 	int	temp;
