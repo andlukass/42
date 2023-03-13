@@ -1,7 +1,7 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*		                                                              */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,32 +9,49 @@
 /*   Updated: 2023/03/07 20:33:07 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*#include <stdio.h>*/
+#include <unistd.h>
 
-int	ft_str_is_printable(char *str)
+void	print_char(char c)
+{
+	char	*base;
+	char	hexa1;
+	char	hexa2;
+
+	base = "0123456789abcdef";
+	if (c < 32 || c == 127)
+	{
+		hexa1 = base[c / 16];
+		hexa2 = base[c % 16];
+		write(1, "\\", 1);
+		write(1, &hexa1, 1);
+		write(1, &hexa2, 1);
+	}
+	else
+	{
+		write(1, &c, 1);
+	}
+}
+
+void	print_word(char *str)
 {
 	int	index;
-	int	result;
 
-	result = 1;
 	index = 0;
 	while (str[index] != '\0')
 	{
-		if (str[index] >= 32 && str[index] <= 126)
-		{
-			result = 1;
-		}
-		else
-		{
-			return (0);
-		}
+		print_char(str[index]);
 		index++;
 	}
-	return (result);
 }
 
-/*int main()
+void	ft_putstr_non_printable(char *str)
 {
-	char teste[20] = "AAAAZZZ";
-	printf("%d\n",ft_str_is_printable(teste));
+	print_word(str);
+}
+
+/*int	main(void)
+{
+	char	test[25] = "hello\vare u good?";
+
+	ft_putstr_non_printable(test);
 }*/

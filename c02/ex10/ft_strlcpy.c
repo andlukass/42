@@ -1,41 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 20:33:39 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/03/08 20:33:52 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/03/07 20:32:51 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/03/07 20:33:07 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+/*#include <stdio.h>*/
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
+int	get_length(char *str)
 {
-	int	i;
+	int	index;
 
-	i = 0;
-	if (str[i] >= 97 && str[i] <= 122)
+	index = 0;
+	while (str[index] != '\0')
 	{
-		str[i] = (str[i] - 32);
+		index++;
 	}
-	while (str[i] != '\0')
-	{
-		if (str[i - 1] >= 32 && str[i - 1] <= 47)
-		{
-			if (str[i] >= 97 && str[i] <= 122)
-			{
-				str[i] = (str[i] - 32);
-			}
-		}
-		i++;
-	}
-	return (str);
+	return (index);
 }
 
-int main()
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	char teste[60] = "ola, tudo beM? 42palavras quarenta-e-duas; cinquenta+e+um";
-	printf("%s\n",ft_strlcpy(teste));
+	int	index;
+	int	length;
+
+	length = get_length(src);
+	if (size <= 0)
+	{
+		return (length);
+	}
+	index = 0;
+	while (index != size - 1)
+	{
+		dest[index] = src[index];
+		index++;
+	}
+	length = index;
+	while (index < size)
+	{
+		dest[index] = '\0';
+		index++;
+	}
+	return (length);
 }
+
+/*int main()
+{
+	char test[] = "LETS TEST TOHGUETEER";
+	char test2[25];
+	printf("%d\n",ft_strlcpy(test2,test,25));
+	printf("%s\n",test2);
+}*/

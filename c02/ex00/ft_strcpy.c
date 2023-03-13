@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:32:51 by llopes-d          #+#    #+#             */
 /*   Updated: 2023/03/07 20:33:07 by llopes-d         ###   ########.fr       */
@@ -13,13 +13,16 @@
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	while (*src != '\0')
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
 	{
-		*dest = *src;
+		dest[i] = src[i];
 		dest++;
 		src++;
 	}
-	*dest = '\0';
+	dest[i] = '\0';
 	return (dest);
 }
 

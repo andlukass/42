@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 20:33:39 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/03/08 20:33:52 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/03/07 20:32:51 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/03/07 20:33:07 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*#include <stdio.h>*/
@@ -39,6 +39,6 @@ int	ft_str_is_alpha(char *str)
 
 /*int main()
 {
-	char teste[20] = "testa ai";
-	printf("%d\n",ft_str_is_alpha(teste));
+	char test[20] = "test hahah";
+	printf("%d\n",ft_str_is_alpha(test));
 }*/
