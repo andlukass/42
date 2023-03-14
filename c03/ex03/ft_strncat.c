@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 20:32:51 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 20:33:07 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/03/14 14:53:59 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/03/14 14:54:03 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -23,29 +23,27 @@ int	get_length(char *str)
 	return (index);
 }
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+char *ft_strncat(char *dest, char *src, unsigned int nb)
 {
 	unsigned int	index;
 	unsigned int	length;
 
-	length = get_length(src);
 	index = 0;
-	if (size != '\0')
+	length = get_length(dest);
+	while (src[index] != '\0' && index < nb)
 	{
-		while (src[index] != 0 && index < (size - 1))
-		{
-			dest[index] = src[index];
-			index++;
-		}
-		dest[index] = '\0';
+		dest[index + length] = src[index];
+		index++;
 	}
-	return (length);
+	return (dest);
 }
 
-/*int main()
+/*int	main()
 {
-	char test[] = "LETS TEST TOHGUETEER";
-	char test2[25];
-	printf("%d\n",ft_strlcpy(test2,test,25));
-	printf("%s\n",test2);
+	char test1[50] = "add'te\nst";
+	char test2[50] = " add haha";
+
+	printf("%s\n", ft_strncat(test1, test2, 4));
+
+
 }*/

@@ -9,11 +9,11 @@
 /*   Updated: 2023/03/07 20:33:07 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*#include <stdio.h>*/
+#include <stdio.h>
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	int	index;
+	unsigned int	index;
 
 	index = 0;
 	while (index < n && src[index] != '\0')

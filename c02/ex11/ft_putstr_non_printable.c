@@ -11,42 +11,35 @@
 /* ************************************************************************** */
 #include <unistd.h>
 
-void	print_char(char c)
-{
-	char	*base;
-	char	hexa1;
-	char	hexa2;
+#define HEX "0123456789abcdef"
 
-	base = "0123456789abcdef";
-	if (c < 32 || c == 127)
-	{
-		hexa1 = base[c / 16];
-		hexa2 = base[c % 16];
-		write(1, "\\", 1);
-		write(1, &hexa1, 1);
-		write(1, &hexa2, 1);
-	}
-	else
-	{
-		write(1, &c, 1);
-	}
+int	ft_char_is_printable(char c)
+{
+	return (c >= 32 && c <= 126);
 }
 
-void	print_word(char *str)
+void	ft_putchar(char c)
 {
-	int	index;
+	write(1, &c, 1);
+}
 
-	index = 0;
-	while (str[index] != '\0')
-	{
-		print_char(str[index]);
-		index++;
-	}
+void	ft_putchar_hex(unsigned char c)
+{
+	ft_putchar('\\');
+	ft_putchar(HEX[c / 16]);
+	ft_putchar(HEX[c % 16]);
 }
 
 void	ft_putstr_non_printable(char *str)
 {
-	print_word(str);
+	while (*str)
+	{
+		if (ft_char_is_printable(*str))
+			ft_putchar(*str);
+		else
+			ft_putchar_hex(*str);
+		str++;
+	}
 }
 
 /*int	main(void)
