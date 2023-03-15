@@ -21,13 +21,13 @@ int	ft_strcmp(char *s1, char *s2)
 	{
 		index++;
 	}
-	return (s1[index] - s2[index]);
+	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
 }
 
-int	main()
+/*int	main()
 {
-	char test1[50] = "adabb!c ";
-	char test2[50] = "adabb!c";
+	char test1[50] = "!adabb!d";
+	char test2[50] = "!adabb!e";
 
 	//printf("%d\n", strcmp(test1, test2));
 	printf("%d\n", ft_strcmp(test1, test2));
@@ -35,4 +35,4 @@ int	main()
 
 	//SE A PRIMEIRA FOIR MAIOR E POSITIVO
 	//SE A SEGUNDA FOR MAIOR E NEGATIVO
-}
+}*/

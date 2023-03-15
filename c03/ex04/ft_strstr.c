@@ -79,10 +79,10 @@ char	*ft_strstr(char *str, char *to_find)
 
 /*int	main()
 {
-	char test1[50] = "chupa porco imundo";
-	char test2[50] = "porco";
+	char test1[50] = "LETS TEST IT";
+	char test2[50] = "_";
 
 
 	printf("%s\n", ft_strstr(test1, test2));
-	//printf("%s\n", strstr(test1, test2));
+	printf("%s\n", ft_strstrr(test1, test2));
 }*/

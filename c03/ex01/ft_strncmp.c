@@ -37,10 +37,10 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 
 /*int	main()
 {
-	char test1[50] = "add'";
+	char test1[50] = "acd'";
 	char test2[50] = "add ";
 
-	printf("%d\n", ft_strncmp(test1, test2, 4));
+	printf("%d\n", ft_strncmp(test1, test2, 0));
 
 
 	//SE A PRIMEIRA FOIR MAIOR E POSITIVO

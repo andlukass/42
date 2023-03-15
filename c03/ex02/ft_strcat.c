@@ -35,6 +35,7 @@ char	*ft_strcat(char *dest, char *src)
 		dest[index + length] = src[index];
 		index++;
 	}
+	dest[index + length] = '\0';
 	return (dest);
 }
 

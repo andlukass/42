@@ -23,7 +23,7 @@ int	get_length(char *str)
 	return (index);
 }
 
-char *ft_strncat(char *dest, char *src, unsigned int nb)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
 	unsigned int	index;
 	unsigned int	length;
@@ -35,6 +35,7 @@ char *ft_strncat(char *dest, char *src, unsigned int nb)
 		dest[index + length] = src[index];
 		index++;
 	}
+	dest[index + length] = '\0';
 	return (dest);
 }
 
