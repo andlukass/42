@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -28,14 +28,29 @@ int	isspc(char c)
 	return (result);
 }
 
-int	isnum(char c)
+int	isnum(char c, int control, char *str)
 {
 	int	result;
+	int	index;
 
 	result = 0;
-	if ((c >= 48 && c <= 57) || (c == 43 || c == 45))
+	index = 0;
+	if (control == 0)
 	{
-		result = 1;
+		if ((c >= 48 && c <= 57) || (c == 43 || c == 45))
+		{
+				result = 1;
+		}
+		return (result);
+	}
+	else
+	{
+		while (str[index] != '\0' && ((str[index] == 43 || str[index] == 45)))
+		{		
+			if (str[index] == '-')
+					result++;
+			index++;
+		}
 	}
 	return (result);
 }
@@ -43,14 +58,11 @@ int	isnum(char c)
 void	get_number(int *final_number, int index, char *str)
 {
 	int	buff;
-	int	dash_count;
 
 	buff = 0;
-	dash_count = 0;
-	while (str[index] != '\0' && (isnum(str[index]) || isspc(str[index])))
+	while (str[index] != '\0' && (isnum(str[index], 0, str)
+			|| isspc(str[index])))
 	{
-		if (str[index] == '-')
-			dash_count++;
 		if (!(isspc(str[index]) || str[index] == '+' || str[index] == '-'))
 		{
 			if (final_number == 0)
@@ -63,23 +75,40 @@ void	get_number(int *final_number, int index, char *str)
 		}
 	index++;
 	}
-	printf("%d\n", dash_count);
-	if (dash_count % 2 != 0)
-		*final_number = *final_number * -1;
 }
 
 int	ft_atoi(char *str)
 {
 	int	final_number;
+	int	index;
+	int	dash_count;
+	int	space_after;
 
+	index = 0;
+	dash_count = 0;
+	space_after = 0;
+	while (str[index] && (dash_count <= 1))
+	{	
+		if ((str[index] == '-' || str[index] == '+') && dash_count < 1)
+			dash_count++;
+		if (isspc(str[index]) && dash_count >= 1)
+			space_after++;
+		if (space_after > 0)
+			return (0);
+		index++;
+	}
 	final_number = 0;
+	dash_count = 0;
 	get_number(&final_number, 0, str);
+	dash_count = isnum(str[index], 1, str);
+	if (dash_count % 2 != 0)
+		final_number = final_number * -1;
 	return (final_number);
 }
 
 /*int	main()
 {
-	char test1[] = "-- \n +-+----+-5252-+aa7";
+	char test1[] = "   -+-5252a-a7";
 
 	printf("%d\n",ft_atoi(test1));
 }*/
