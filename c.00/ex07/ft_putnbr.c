@@ -24,7 +24,7 @@ void ft_putnbr(int nb)
 	{
 		escrever('-');
 		escrever('2');
-		ft_putnbr(147483648);
+		nb = 147483648;
 	}
 	if(nb < 0)
 	{

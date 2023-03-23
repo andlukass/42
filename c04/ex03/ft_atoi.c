@@ -9,106 +9,64 @@
 /*   Updated: 2023/03/14 14:54:03 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
+
+//#include <stdio.h>
 
 int	isspc(char c)
 {
 	int	result;
 
 	result = 0;
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r')
+	if ((c >= 9 && c <= 13) || c == ' ')
 	{
 		result = 1;
-	}
-	if (c == '\t' || c == '\v')
-	{
-		result = 1;
-	}	
-	return (result);
-}
-
-int	isnum(char c, int control, char *str)
-{
-	int	result;
-	int	index;
-
-	result = 0;
-	index = 0;
-	if (control == 0)
-	{
-		if ((c >= 48 && c <= 57) || (c == 43 || c == 45))
-		{
-				result = 1;
-		}
-		return (result);
-	}
-	else
-	{
-		while (str[index] != '\0' && ((str[index] == 43 || str[index] == 45)))
-		{		
-			if (str[index] == '-')
-					result++;
-			index++;
-		}
 	}
 	return (result);
 }
 
-void	get_number(int *final_number, int index, char *str)
+int	get_number(int number, int index, char *str)
 {
-	int	buff;
-
-	buff = 0;
-	while (str[index] != '\0' && (isnum(str[index], 0, str)
-			|| isspc(str[index])))
+	while (str[index] && (str[index] >= '0' && str[index] <= '9'))
 	{
-		if (!(isspc(str[index]) || str[index] == '+' || str[index] == '-'))
-		{
-			if (final_number == 0)
-				*final_number = str[index] - 48;
-			else
-			{
-				buff = str[index] - 48;
-				*final_number = (*final_number * 10) + buff;
-			}
-		}
-	index++;
+		if (number == 0)
+			number = str[index] - 48;
+		else
+			number = (number * 10) + (str[index] - 48);
+		index++;
 	}
+	return (number);
 }
 
 int	ft_atoi(char *str)
 {
-	int	final_number;
 	int	index;
+	int	control;
+	int	number;
 	int	dash_count;
-	int	space_after;
 
-	index = 0;
 	dash_count = 0;
-	space_after = 0;
-	while (str[index] && (dash_count <= 1))
-	{	
-		if ((str[index] == '-' || str[index] == '+') && dash_count < 1)
-			dash_count++;
-		if (isspc(str[index]) && dash_count >= 1)
-			space_after++;
-		if (space_after > 0)
+	control = 0;
+	number = 0;
+	index = -1;
+	while ((str[++index]) && ((str[index] == '-' || str[index] == '+')
+			|| isspc(str[index])))
+	{
+		if (isspc(str[index]) && (control > 0))
 			return (0);
-		index++;
+		if (str[index] == '-')
+			dash_count++;
+		if ((str[index] == '-' || str[index] == '+'))
+			control++;
 	}
-	final_number = 0;
-	dash_count = 0;
-	get_number(&final_number, 0, str);
-	dash_count = isnum(str[index], 1, str);
+	number = get_number(number, index, str);
 	if (dash_count % 2 != 0)
-		final_number = final_number * -1;
-	return (final_number);
+		number = -number;
+	return (number);
 }
 
 /*int	main()
 {
-	char test1[] = "   -+-5252a-a7";
+	char test1[] = "\n    ------13256322.-a7";
 
-	printf("%d\n",ft_atoi(test1));
+	printf("ATOI: %d\n",ft_atoi(test1));
 }*/
