@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "libft.h": "c",
+    "unistd.h": "c",
+    "stdio.h": "c",
+    "__locale": "c",
+    "string.h": "c",
+    "stdlib.h": "c",
+    "__string": "c",
+    "string": "c",
+    "string_view": "c"
+  }
+}
