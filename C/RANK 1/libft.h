@@ -47,4 +47,6 @@ void *ft_calloc(size_t nmemb, size_t size);
 
 char *ft_strtrim(char const *s1, char const *set);
 
+void *memmove(void *dest, const void *src, size_t n);
+
 #endif

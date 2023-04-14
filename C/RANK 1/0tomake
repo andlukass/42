@@ -16,8 +16,8 @@ strncmp ✔️
 strnstr ✔️
 atoi ✔️
 strdup ✔️
-• memmove
-• strlcpy
-• memchr
-• memcmp
-• calloc
+strlcpy ✔️
+memchr ✔️
+memcmp ✔️
+calloc ✔️
+memmove ✔️

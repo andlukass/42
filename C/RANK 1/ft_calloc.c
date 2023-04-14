@@ -29,13 +29,13 @@ void *ft_calloc(size_t nmemb, size_t size)
     return (final);
 }
 
-int main() {
-    int *array;
+/*int main() {
+    char *array;
     int size = 5;
     int i;
 
     // aloca um array de inteiros com 10 elementos e inicializa com zeros
-    array = (int*) ft_calloc(size, sizeof(int));
+    array = (char*) ft_calloc(size, sizeof(char));
 
     // verifica se a alocação foi bem sucedida
     if (array == NULL) {
@@ -45,12 +45,13 @@ int main() {
 
     // exibe os valores do array
     printf("Valores do array apos a inicializacao:\n");
-    for (i = 0; i < size; i++) {
-        printf("%d\n", array[i]);
-    }
+    printf("%s\n", array);
+    // for (i = 0; i < size; i++) {
+    //     printf("%d\n", array[i]);
+    // }
 
     // libera a memoria alocada
     free(array);
 
     return 0;
-}
+}*/
