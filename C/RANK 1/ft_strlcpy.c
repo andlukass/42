@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   strlcpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,33 +9,25 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//#include <stdio.h>
+// #include <stdio.h>
 #include "libft.h"
 
-void *ft_memset(void *b, int c, size_t len)
+size_t  strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t index;
+	size_t	index;
+	size_t	length;
 
 	index = 0;
-	while (index < len)
+    while (src[length])
+		length++;
+	if (size != '\0')
 	{
-		((unsigned char *)b)[index] = (unsigned char)c;
-		index++;
+		while (src[index] != 0 && index < (size - 1))
+		{
+			dst[index] = src[index];
+			index++;
+		}
+		dst[index] = '\0';
 	}
-	return (b);
+	return (length);
 }
-
-/*int main()
-{
-	//int array[5] = {1,1,1,1,1};
-	char array[5];
-	//estou passando sizeof, ou seja o array final tera tamanho diferente,
-	// caso passe um array de int, ou de char, no final converto tudo para unsg char
-	// entao fica tudo igual
-	ft_memset(array, 'Z', sizeof(array));
-	//memset(array, 2, sizeof(array));
-	for (int i = 0; i < 5; i++)
-		printf("%d ", array[i]);
-	
-	//printf("%s ", array);
-}*/

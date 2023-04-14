@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,33 +9,35 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//#include <stdio.h>
+#include <stdio.h>
 #include "libft.h"
 
-void *ft_memset(void *b, int c, size_t len)
+void *ft_memchr(const void *s, int c, size_t n)
 {
 	size_t index;
 
 	index = 0;
-	while (index < len)
+	while (index < n)
 	{
-		((unsigned char *)b)[index] = (unsigned char)c;
+		if(((unsigned char *)s)[index] == (unsigned char)c)
+			return ((void *)&s[index]);
 		index++;
 	}
-	return (b);
+	return (NULL);
 }
 
 /*int main()
 {
-	//int array[5] = {1,1,1,1,1};
-	char array[5];
-	//estou passando sizeof, ou seja o array final tera tamanho diferente,
-	// caso passe um array de int, ou de char, no final converto tudo para unsg char
-	// entao fica tudo igual
-	ft_memset(array, 'Z', sizeof(array));
-	//memset(array, 2, sizeof(array));
-	for (int i = 0; i < 5; i++)
-		printf("%d ", array[i]);
+	int array[5] = {2,8,1,5,5};
+	int *recebe;
+	//char array[] = "testaa ai vacilones";
+	recebe = memchr(array, 90, sizeof(array));
+	//ft_memchr(array, 2, sizeof(array));
+	if (recebe != NULL)
+		printf("nao e null");
 	
-	//printf("%s ", array);
+	//printf("%s ", (char *)ft_memchr(array, 'z', size));
+
+	//com inteiro so testa se encontrou, com de char conseguimos imprimos 
+	//o restante da string a partir da primeira aparicao.
 }*/
