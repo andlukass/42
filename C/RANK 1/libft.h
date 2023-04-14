@@ -45,4 +45,6 @@ int ft_memcmp(const void *s1, const void *s2, size_t n);
 
 void *ft_calloc(size_t nmemb, size_t size);
 
+char *ft_strtrim(char const *s1, char const *set);
+
 #endif
