@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,23 +11,24 @@
 /* ************************************************************************** */
 /*#include <stdio.h>
 #include <stdlib.h>*/
-int ft_atoi(const char *str)
+
+int	ft_atoi(const char *str)
 {
-	int result;
-	int index;
-	int dash;
+	int	result;
+	int	negative;
+	int	index;
 
 	result = 0;
 	index = 0;
-	dash = 0;
-	while (str[index] && ((str[index] >= 9 && str[index] <= 13) || str[index] == ' '))
+	negative = 1;
+	while (str[index] && ((str[index] >= 9
+				&& str[index] <= 13) || str[index] == ' '))
 		index++;
-	while (str[index] && ((str[index] == '+' || str[index] == '-')))
-	{
-		if (str[index] == '-')
-			dash++;
-		index++;
-	}
+	if (str[index] == '-')
+		negative *= -1;
+	else if (str[index] != '+')
+		return (0);
+	index++;
 	while (str[index] && ((str[index] >= 48 && str[index] <= 57)))
 	{
 		if (result == 0)
@@ -36,10 +37,11 @@ int ft_atoi(const char *str)
 			result = ((result * 10) + (str[index] - 48));
 		index++;
 	}
-	return ((dash % 2 == 0) ? result : (result *= -1));
+	return (result * negative);
 }
-/*int main()
+
+/*int	main(void)
 {
-	printf("%d\n", ft_atoi("   --455 2"));
+	printf("%d\n", ft_atoi("   -455 2"));
 	// printf("%d\n", atoi("432423"));
 }*/

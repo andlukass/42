@@ -31,9 +31,11 @@ size_t ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize);
 
 char *ft_strdup(const char *s1);
 
-char *strchr(const char *s, int c);
+char *ft_strchr(const char *s, int c);
 
-char *strrchr(const char *s, int c);
+char *ft_strrchr(const char *s, int c);
+
+size_t  ft_strlcpy(char *dst, const char *src, size_t size);
 
 void ft_bzero(void *s, size_t n);
 

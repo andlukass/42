@@ -9,9 +9,10 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 // #include <stdio.h>
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);

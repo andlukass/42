@@ -9,11 +9,12 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-// #include <stdio.h>
 
-char *ft_strchr(const char *s, int c)
+//#include <stdio.h>
+
+char	*ft_strchr(const char *s, int c)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (s[index])
@@ -22,12 +23,16 @@ char *ft_strchr(const char *s, int c)
 			return ((char *)(&s[index]));
 		index++;
 	}
-	return ((c == s[index]) ? ((char *)(&s[index])) : 0);
+	if (c == s[index])
+		return ((char *)(&s[index]));
+	else
+		return (0);
 }
 
 /*int main()
 {
 	char test1[50] = "LETS TESS";
 
-	printf("%s\n", ft_strchr(test1, '0'));
+	//printf("%s\n", ft_strchr(test1, 72));
+	printf("%s\n", strchr(test1, 72));
 }*/

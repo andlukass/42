@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_bzero.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,12 +9,13 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 // #include <stdio.h>
 #include "libft.h"
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (index < n)

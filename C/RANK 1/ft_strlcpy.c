@@ -9,16 +9,18 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 // #include <stdio.h>
 #include "libft.h"
 
-size_t  strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	index;
 	size_t	length;
 
 	index = 0;
-    while (src[length])
+	length = 0;
+	while (src[length])
 		length++;
 	if (size != '\0')
 	{

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,13 +9,14 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 // #include <stdio.h>
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	char *final;
-	int index;
-	int count;
+	char	*final;
+	int		index;
+	int		count;
 
 	index = 0;
 	count = 0;
@@ -30,7 +31,10 @@ char *ft_strrchr(const char *s, int c)
 	}
 	if (count)
 		return (final);
-	return ((c == s[index]) ? ((char *)(&s[index])) : 0);
+	if (c == s[index])
+		return ((char *)(&s[index]));
+	else
+		return (0);
 }
 
 /*int main()

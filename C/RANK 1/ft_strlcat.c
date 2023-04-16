@@ -9,14 +9,15 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 // #include <stdio.h>
 #include "libft.h"
 
-size_t ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-	size_t index;
-	size_t dst_length;
-	size_t src_length;
+	size_t	index;
+	size_t	dst_length;
+	size_t	src_length;
 
 	index = 0;
 	dst_length = 0;

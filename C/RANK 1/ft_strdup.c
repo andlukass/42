@@ -9,14 +9,15 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 // #include <stdio.h>
 #include "libft.h"
 
-char *ft_strdup(char const *s1)
+char	*ft_strdup(char const *s1)
 {
-	char *duplicate;
-	int index;
-	int length;
+	char	*duplicate;
+	int		index;
+	int		length;
 
 	index = 0;
 	length = 0;
@@ -34,8 +35,8 @@ char *ft_strdup(char const *s1)
 	return (duplicate);
 }
 
-int main()
+/*int main()
 {
 	char test[] = "AAAAH";
 	printf("%s", ft_strdup(test));
-}
+}*/

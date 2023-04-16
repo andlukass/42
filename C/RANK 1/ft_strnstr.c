@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,13 +9,14 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 // #include <stdio.h>
 #include "libft.h"
 
-static size_t compare(const char *haystack, const char *needle, size_t index)
+static size_t	compare(const char *haystack, const char *needle, size_t index)
 {
-	size_t result;
-	size_t j;
+	size_t	result;
+	size_t	j;
 
 	result = 0;
 	j = 0;
@@ -31,10 +32,10 @@ static size_t compare(const char *haystack, const char *needle, size_t index)
 	return (result);
 }
 
-char *ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t haystack_index;
-	size_t find_index;
+	size_t	haystack_index;
+	size_t	find_index;
 
 	haystack_index = 0;
 	find_index = 0;

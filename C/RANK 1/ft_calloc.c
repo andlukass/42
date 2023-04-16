@@ -9,28 +9,29 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
- #include <stdio.h>
+
+//#include <stdio.h>
 #include "libft.h"
 
-void *ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-  void	*final;
-  int index;
+	void	*final;
+	int		index;
 
-    index = 0;
-  final = (void*)malloc(nmemb * size);
-  if (final == NULL)
+	index = 0;
+	final = (void *)malloc(nmemb * size);
+	if (final == NULL)
 		return (NULL);
-    	while (index < nmemb)
+	while (index < nmemb)
 	{
 		((unsigned char *)final)[index] = 0;
 		index++;
 	}
-    return (final);
+	return (final);
 }
 
 /*int main() {
-    char *array;
+	  char *array;
     int size = 5;
     int i;
 

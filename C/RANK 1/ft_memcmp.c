@@ -9,18 +9,20 @@
 /*   Updated: 2023/04/06 17:36:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 //#include <stdio.h>
 #include "libft.h"
 
-int ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t index;
+	size_t	index;
 
 	index = 0;
-	while ((((unsigned char *)s1)[index] == ((unsigned char *)s2)[index]) 
+	while ((((unsigned char *)s1)[index] == ((unsigned char *)s2)[index])
 			&& index < n - 1)
 		index++;
-	return ((int)((unsigned char *)s1)[index] - (int)((unsigned char *)s2)[index]);
+	return ((int)((unsigned char *)s1)[index]
+		- (int)((unsigned char *)s2)[index]);
 }
 
 /*int main()
