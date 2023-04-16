@@ -21,4 +21,5 @@ int	ft_isprint(int c)
 /*int main()
 {
 	printf("%d\n", ft_isprint('c'));
+	//see if it is a printable char
 }*/

@@ -10,33 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 #include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	index;
 
-	index = 0;
-	n = n - 1;
+	index = -1;
 	if (dest > src)
-	{
-		while (n >= 0)
-		{
+		while (n-- > 0)
 			((unsigned char *)dest)[n] = ((unsigned char *)src)[n];
-			if (n == 0)
-				break ;
-			n--;
-		}
-	}
 	else
-	{
-		while (index < n)
-		{
+		while (++index < n)
 			((unsigned char *)dest)[index] = ((unsigned char *)src)[index];
-			index++;
-		}
-	}
 	return (dest);
 }
 
@@ -48,7 +35,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	char teste[] = "array2";
 	memmove(array1, teste, 6);
 	ft_memmove(array2, teste, 6);
-
 
 	// for (int i = 0; i < 5; i++)
 	// printf("%d ", array[i]);

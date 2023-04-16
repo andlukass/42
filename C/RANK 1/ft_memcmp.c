@@ -18,6 +18,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	size_t	index;
 
 	index = 0;
+	if (n == 0)
+		return (0);
 	while ((((unsigned char *)s1)[index] == ((unsigned char *)s2)[index])
 			&& index < n - 1)
 		index++;
@@ -31,4 +33,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	// int t2[5] = {1,2,3,5,5};
 	// printf("%d ", ft_memcmp(t1, t2, sizeof(t1)));
 	printf("%d ", ft_memcmp("123456", "123457", 10));
+
+	//compare char by char function
+	//but differently from strcmp, accepts all array types
 }*/

@@ -15,7 +15,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	int	index;
+	size_t	index;
 
 	index = 0;
 	while (index < n)
@@ -32,4 +32,6 @@ void	ft_bzero(void *s, size_t n)
 	//for (int i = 0; i < 5; i++)
 	//	printf("%d ", array[i]);
 	printf("%s ", array);
+
+	//fill an array of any type with 0 until the size(n)
 }*/

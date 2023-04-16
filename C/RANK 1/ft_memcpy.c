@@ -33,4 +33,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
     // for (int i = 0; i < 5; i++)
     //     printf("%d ", array[i]);
     printf("%s ", array);
+
+	//copy function
+	//but differently from strcpy, accepts all array types
 }*/

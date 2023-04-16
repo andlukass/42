@@ -19,10 +19,7 @@ void	*ft_memset(void *b, int c, size_t len)
 
 	index = 0;
 	while (index < len)
-	{
-		((unsigned char *)b)[index] = (unsigned char)c;
-		index++;
-	}
+		((unsigned char *)b)[index++] = (unsigned char)c;
 	return (b);
 }
 
@@ -30,13 +27,13 @@ void	*ft_memset(void *b, int c, size_t len)
 {
 	//int array[5] = {1,1,1,1,1};
 	char array[5];
-	//estou passando sizeof, ou seja o array final tera tamanho diferente,
-	// caso passe um array de int, ou de char, no final converto tudo para unsg char
-	// entao fica tudo igual
+
 	ft_memset(array, 'Z', sizeof(array));
 	//memset(array, 2, sizeof(array));
 	for (int i = 0; i < 5; i++)
 		printf("%d ", array[i]);
 	
 	//printf("%s ", array);
+
+	//fill an array of any type with some number/char until the size(len)
 }*/

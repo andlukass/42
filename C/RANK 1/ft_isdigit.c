@@ -21,4 +21,5 @@ int	ft_isdigit(int c)
 /*int main()
 {
 	printf("%d\n", ft_isdigit('c'));
+	//see if it is a number
 }*/

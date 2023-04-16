@@ -1,5 +1,5 @@
 
-#include "libft.h"
+/*#include "libft.h"
 
 #include <stdio.h>
 
@@ -60,4 +60,4 @@ int main(void)
         printf("Failed to allocate memory for trimmed string.\n");
     }
     return 0;
-}
+}*/

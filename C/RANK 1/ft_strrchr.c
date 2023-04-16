@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
+//#include <stdio.h>
 
 char	*ft_strrchr(const char *s, int c)
 {
@@ -22,7 +22,7 @@ char	*ft_strrchr(const char *s, int c)
 	count = 0;
 	while (s[index])
 	{
-		if (c == s[index])
+		if ((char)c == s[index])
 		{
 			final = ((char *)(&s[index]));
 			count++;
@@ -31,7 +31,7 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	if (count)
 		return (final);
-	if (c == s[index])
+	if ((char)c == s[index])
 		return ((char *)(&s[index]));
 	else
 		return (0);
@@ -41,5 +41,9 @@ char	*ft_strrchr(const char *s, int c)
 {
 	char test1[50] = "LETS TESS";
 
-	printf("%s\n", ft_strrchr(test1, '0'));
+	printf("mine:%s\n", ft_strrchr("teste", 1125));
+	printf("official:%s\n", strrchr("teste", 1125));
+
+	//return a pointer to the last ocurrence of the 2nd parameter
+	//(\0 counts)
 }*/

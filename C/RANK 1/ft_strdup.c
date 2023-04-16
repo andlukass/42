@@ -23,7 +23,7 @@ char	*ft_strdup(char const *s1)
 	length = 0;
 	while (s1[length])
 		length++;
-	duplicate = malloc(sizeof(char) * length);
+	duplicate = malloc(sizeof(char) * (length + 1));
 	if (duplicate == 0)
 		return (0);
 	while (s1[index])
@@ -40,5 +40,7 @@ int main()
 {
 	char test[] = "AAAAH";
 	printf("%s", ft_strdup(test));
+
+	//copy function but with new allocated memory
 }
 */

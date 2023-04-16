@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-static int
+/*static int
 	ft_char_in_set(char c, char const *set)
 {
 	size_t	i;
@@ -72,3 +72,4 @@ int main(void)
     }
     return 0;
 }
+*/

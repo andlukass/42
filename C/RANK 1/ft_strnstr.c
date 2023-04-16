@@ -10,21 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
+#include <stdio.h>
 #include "libft.h"
 
-static size_t	compare(const char *haystack, const char *needle, size_t index)
+static size_t	compare(const char *big, const char *little, size_t index,
+					size_t len)
 {
 	size_t	result;
 	size_t	j;
 
 	result = 0;
 	j = 0;
-	while (needle[j])
+	while (little[j])
 	{
-		if (needle[j] == haystack[index])
+		if (little[j] == big[index])
 			result = 1;
 		else
+			return (0);
+		if (index > (len - 1))
 			return (0);
 		j++;
 		index++;
@@ -32,37 +35,41 @@ static size_t	compare(const char *haystack, const char *needle, size_t index)
 	return (result);
 }
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	haystack_index;
-	size_t	find_index;
+	size_t	big_index;
+	size_t	little_index;
 
-	haystack_index = 0;
-	find_index = 0;
-	if (needle[haystack_index] == '\0')
-		return ((char *)haystack);
-	while (haystack[haystack_index] && haystack_index < len)
+	big_index = 0;
+	little_index = 0;
+	if (little[big_index] == '\0')
+		return ((char *)big);
+	if (len == 0)
+		return (0);
+	while (big[big_index] && big_index < len)
 	{
-		while (needle[find_index])
+		while (little[little_index])
 		{
-			if (haystack[haystack_index] == needle[find_index])
+			if (big[big_index] == little[little_index])
 			{
-				if (compare(haystack, needle, haystack_index))
-					return ((char *)&haystack[haystack_index]);
+				if (compare(big, little, big_index, len))
+					return ((char *)&big[big_index]);
 			}
-			find_index++;
+			little_index++;
 		}
-		find_index = 0;
-		haystack_index++;
+		little_index = 0;
+		big_index++;
 	}
 	return (0);
 }
-
-/*int main()
+/*
+int main()
 {
 	char test1[50] = "LETS TESS";
-	char test2[50] = "TES";
+	char test2[50] = "TESS";
 
-	printf("mine:%s\n", ft_strnstr(test1, test2, 3));
-	printf("official:%s\n", strnstr(test1, test2, 3));
+	printf("mine:%s\n", ft_strnstr("aaabcabcd", "a", 1));
+	printf("official:%s\n", strnstr("aaabcabcd", "a", 1));
+	//search a string inside another string
+	// VER DEPOIS POR QUE O DE CIMA TEM  -1 E O DE BAIXO NAO
 }*/

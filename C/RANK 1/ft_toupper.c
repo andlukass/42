@@ -21,4 +21,5 @@ int	ft_toupper(int c)
 /*int main()
 {
 	printf("%d\n", ft_toupper('C'));
+	//puts a char in upper case
 }*/

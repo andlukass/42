@@ -19,11 +19,11 @@ char	*ft_strchr(const char *s, int c)
 	index = 0;
 	while (s[index])
 	{
-		if (c == s[index])
+		if ((char)c == s[index])
 			return ((char *)(&s[index]));
 		index++;
 	}
-	if (c == s[index])
+	if ((char)c == s[index])
 		return ((char *)(&s[index]));
 	else
 		return (0);
@@ -35,4 +35,7 @@ char	*ft_strchr(const char *s, int c)
 
 	//printf("%s\n", ft_strchr(test1, 72));
 	printf("%s\n", strchr(test1, 72));
+
+	//return a pointer to the first ocurrence of the 2nd parameter
+	//(\0 counts)
 }*/

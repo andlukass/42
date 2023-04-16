@@ -16,43 +16,27 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*final;
-	int		index;
+	size_t	index;
 
 	index = 0;
 	final = (void *)malloc(nmemb * size);
 	if (final == NULL)
 		return (NULL);
-	while (index < nmemb)
-	{
-		((unsigned char *)final)[index] = 0;
-		index++;
-	}
+	while (index < (nmemb * size))
+		((unsigned char *)final)[index++] = 0;
 	return (final);
 }
 
 /*int main() {
-	  char *array;
+	char *array;
     int size = 5;
     int i;
 
-    // aloca um array de inteiros com 10 elementos e inicializa com zeros
     array = (char*) ft_calloc(size, sizeof(char));
-
-    // verifica se a alocação foi bem sucedida
-    if (array == NULL) {
-        printf("Erro ao alocar memoria!");
-        return 1;
-    }
-
-    // exibe os valores do array
-    printf("Valores do array apos a inicializacao:\n");
     printf("%s\n", array);
     // for (i = 0; i < size; i++) {
     //     printf("%d\n", array[i]);
     // }
 
-    // libera a memoria alocada
-    free(array);
-
-    return 0;
+	//allocate memory and after fill with 0
 }*/

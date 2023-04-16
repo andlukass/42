@@ -21,4 +21,5 @@ int	ft_isascii(int c)
 /*int main()
 {
 	printf("%d\n", ft_isascii('c'));
+	//see if it is under ascii table
 }*/

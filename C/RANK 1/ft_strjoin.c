@@ -13,7 +13,7 @@
 // #include <stdio.h>
 #include "libft.h"
 
-char    *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*newstr;
 	int		index;
@@ -24,17 +24,13 @@ char    *ft_strjoin(char const *s1, char const *s2)
 		length1++;
 	while (s2[length2])
 		length2++;
-	newstr = (char*) malloc((length1 + length2) * sizeof(char));
+	newstr = (char *) malloc((length1 + length2) * sizeof(char));
 	if (newstr == NULL)
 		return (NULL);
 	index = 0;
 	length1 = 0;
-	while (s1[length1])
-	{
-		printf("kkk");
+	while (s1[length1++])
 		newstr[length1] = s1[length1];
-		length1++;
-	}
 	while (s2[index])
 	{
 		newstr[length1] = s2[index];

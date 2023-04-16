@@ -24,4 +24,5 @@ int	ft_strlen(const char *s)
 int main()
 {
 	printf("%d\n", ft_strlen("kkkk"));
+	//gets string length
 }*/

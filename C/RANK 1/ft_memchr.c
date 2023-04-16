@@ -21,7 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (index < n)
 	{
 		if (((unsigned char *)s)[index] == (unsigned char)c)
-			return ((void *)&s[index]);
+			return ((void *)&((unsigned char *)s)[index]);
 		index++;
 	}
 	return (NULL);
@@ -30,15 +30,15 @@ void	*ft_memchr(const void *s, int c, size_t n)
 /*int main()
 {
 	int array[5] = {2,8,1,5,5};
-	int *recebe;
-	//char array[] = "testaa ai vacilones";
-	recebe = memchr(array, 90, sizeof(array));
+	char *recebe;
+	//char array[] = "testes, muitos deles";
+	recebe = memchr("testes, muitos deles", 'a', sizeof(array));
 	//ft_memchr(array, 2, sizeof(array));
 	if (recebe != NULL)
-		printf("nao e null");
+		printf("%s\n",recebe);
 	
 	//printf("%s ", (char *)ft_memchr(array, 'z', size));
 
-	//com inteiro so testa se encontrou, com de char conseguimos imprimos 
-	//o restante da string a partir da primeira aparicao.
+	//search until *size* for the first ocurrence of the 2nd parameter
+	//but differently from strchr, accepts all array types
 }*/

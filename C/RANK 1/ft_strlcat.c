@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
+//#include <stdio.h>
 #include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
@@ -22,13 +22,13 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	index = 0;
 	dst_length = 0;
 	src_length = 0;
-	while (dst[dst_length] != '\0')
+	while (dst[dst_length])
 		dst_length++;
-	while (src[src_length] != '\0')
+	while (src[src_length])
 		src_length++;
 	if (dstsize <= dst_length)
 		return (src_length + dstsize);
-	while (src[index] != '\0' && (index < dstsize - dst_length - 1))
+	while (src[index] && (index < ((dstsize - dst_length) - 1)))
 	{
 		dst[index + dst_length] = src[index];
 		index++;
@@ -42,8 +42,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	char dst[] = "HEY TEST IT THERE";
 	char src[] = "12345";
 
-	printf("%zu\n", ft_strlcat(dst, src, 7));
+	printf("%zu\n", ft_strlcat(dst, src, 17));
+	printf("%d\n", strlcat(dst, src, 17));
 	printf("%s\n", dst);
 	printf("%s\n", src);
-}
-*/
+	//POR QUE NAO CONCATENA? QUAL O INTUITO ENTAO?
+}*/

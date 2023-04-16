@@ -21,4 +21,5 @@ int	ft_isalnum(int c)
 /*int main()
 {
 	printf("%d\n", ft_isalnum('c'));
+	//see if it is a letter or a number
 }*/

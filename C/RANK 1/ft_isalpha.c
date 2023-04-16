@@ -21,4 +21,5 @@ int	ft_isalpha(int c)
 /*int main()
 {
 	printf("%d\n", ft_isalpha('c'));
+	//see if it is a letter
 }*/

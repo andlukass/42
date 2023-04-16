@@ -21,4 +21,5 @@ int	ft_tolower(int c)
 /*int main()
 {
 	printf("%d\n", ft_tolower('C'));
+	//puts a char in lower case
 }*/
