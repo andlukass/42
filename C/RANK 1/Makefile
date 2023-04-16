@@ -1,4 +1,4 @@
-SRCS			= ft_strlen.c ft_memcmp.c
+SRCS			= ft_strlen.c ft_memcmp.c ft_strncmp.c
 OBJS			= $(SRCS:.c=.o)
 
 CC				= gcc

@@ -35,8 +35,10 @@ char	*ft_strdup(char const *s1)
 	return (duplicate);
 }
 
-/*int main()
+/*
+int main()
 {
 	char test[] = "AAAAH";
 	printf("%s", ft_strdup(test));
-}*/
+}
+*/

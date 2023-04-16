@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
+#include <stdio.h>
 #include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -25,15 +25,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (s1[i] - s2[i]);
 }
 
-/*int	main()
+int	main()
 {
-	char test1[50] = "add";
-	char test2[50] = "add ";
+	char test1[50] = "abcdef";
+	char test2[50] = "abc\375xx";
 
-	printf("%d\n", ft_strncmp(test1, test2, 10));
-	printf("%d\n", strncmp(test1, test2, 10));
+	printf("%d\n", ft_strncmp(test1, test2, 5));
+	printf("%d\n", strncmp(test1, test2, 5));
 
 
 	//SE A PRIMEIRA FOIR MAIOR E POSITIVO
 	//SE A SEGUNDA FOR MAIOR E NEGATIVO
-}*/
+}
