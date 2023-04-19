@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,35 +13,57 @@
 //#include <stdio.h>
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+static int	get_length(long int i)
 {
-	size_t	index;
-	size_t	length;
+	int	length;
 
-	index = 0;
 	length = 0;
-	while (src[length])
-		length++;
-	if (size > 0)
+	if (i == 0)
+		return (1);
+	if (i < 0)
 	{
-		while (src[index] && index < (size - 1))
-		{
-			dst[index] = src[index];
-			index++;
-		}
-		dst[index] = '\0';
+		i *= -1;
+		length++;
+	}
+	while (i > 0)
+	{
+		i /= 10;
+		length++;
 	}
 	return (length);
 }
 
+char	*ft_itoa(int n)
+{
+	char		*str;
+	int			length;
+	long int	nb;
+
+	nb = n;
+	length = get_length(nb);
+	str = malloc(length * sizeof(char) + 1);
+	if (str == NULL)
+		return (NULL);
+	if (nb == 0)
+		str[0] = 0 + '0';
+	str[length] = '\0';
+	length--;
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb = nb * -1;
+	}
+	while (nb > 0)
+	{
+		str[length] = nb % 10 + '0';
+		nb = nb / 10;
+		length--;
+	}
+	return (str);
+}
+
 /*int main()
 {
-	char dst[] = "HEY TEST IT THERE";
-	char src[] = "12345";
-
-	//printf("%zu\n", ft_strlcpy(dst, src, 17));
-	printf("%d\n", strlcpy(dst, src, 17));
-	printf("%s\n", dst);
-	printf("%s\n", src);
-	//copy function
+	printf("%s\n", ft_itoa(0));
+	//convert an integer into a string, dinamic allocated
 }*/

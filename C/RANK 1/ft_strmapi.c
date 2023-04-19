@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42lisboa.com >  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,35 +13,26 @@
 //#include <stdio.h>
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	index;
-	size_t	length;
+	char	*newstr;
+	int		index;
+	int		length;
 
 	index = 0;
 	length = 0;
-	while (src[length])
+	while (s[length])
 		length++;
-	if (size > 0)
+	newstr = (char *) malloc((length + 1) * sizeof(char));
+	if (newstr == NULL)
+		return (NULL);
+	while (s[index])
 	{
-		while (src[index] && index < (size - 1))
-		{
-			dst[index] = src[index];
-			index++;
-		}
-		dst[index] = '\0';
+		newstr[index] = (*f)(index, s[index]);
+		index++;
 	}
-	return (length);
+	newstr[index] = '\0';
+	return (newstr);
 }
 
-/*int main()
-{
-	char dst[] = "HEY TEST IT THERE";
-	char src[] = "12345";
-
-	//printf("%zu\n", ft_strlcpy(dst, src, 17));
-	printf("%d\n", strlcpy(dst, src, 17));
-	printf("%s\n", dst);
-	printf("%s\n", src);
-	//copy function
-}*/
+//passes each char in the F func, dinamic allocation the new string

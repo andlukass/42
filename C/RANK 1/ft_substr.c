@@ -10,26 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
+#include <stdio.h>
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	size_t	index;
+	size_t	size;
 	char	*newstr;
-	int		index;
 
-	newstr = (char *)malloc(len * sizeof(char));
-	if (newstr == NULL)
-		return (NULL);
-	index = 0;
-	if (start > len)
-		return (NULL);
-	while ((start < len) && s[start])
+	size = 0;
+	while (s[size])
+		size++;
+	if (size < start)
 	{
-		newstr[index] = s[start];
-		start++;
-		index++;
+		newstr = malloc(sizeof(char));
+		newstr[0] = '\0';
+		return (newstr);
 	}
+	size = size - start;
+	if (size < len)
+		len = size;
+	newstr = (char *)malloc((len + 1) * sizeof(char));
+	if (newstr == 0)
+		return (0);
+	index = -1;
+	while (++index < len)
+		newstr[index] = s[start + index];
 	newstr[index] = '\0';
 	return (newstr);
 }
@@ -37,4 +44,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 /*int main()
 {
    printf("\nRESULTADO: %s", ft_substr("teste ai seu vacilao", 5, 32));
+
+1 - SE O TAMANHO DA STRING E MENOR QUE O NUMERO PASSADO COMO 
+INICIO RETORNA UMA STRING ALOCADA VAZIA
+
+2 - DEPOIS DE FAZER ESSA COMPARACAO PASSAMOS A CONTAR O 
+TAMANHO APARTIR DO START
+
+3 - CASO O TAMANHO DA STRING SEJA MENOR QUE O LEN, PASSAMOS A 
+CONSIDERAR O TAMANHO DA STRING COMO LEN(EVITANDO CORE DUMP)
+
+4 - ALOCAMOS MEMORIA COM NOSSO NOVO TAMANHO
+
+5  - FAZEMOS UMA COPIA PADRAO
+
 }*/

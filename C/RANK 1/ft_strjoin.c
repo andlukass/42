@@ -10,37 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
+//#include <stdio.h>
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*newstr;
 	int		index;
-	int		length1;
-	int		length2;
+	int		length;
 
-	while (s1[length1])
-		length1++;
-	while (s2[length2])
-		length2++;
-	newstr = (char *) malloc((length1 + length2) * sizeof(char));
+	newstr = (char *) malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1)
+			* sizeof(char));
 	if (newstr == NULL)
 		return (NULL);
 	index = 0;
-	length1 = 0;
-	while (s1[length1++])
-		newstr[length1] = s1[length1];
+	length = -1;
+	while (s1[++length])
+		newstr[length] = s1[length];
 	while (s2[index])
 	{
-		newstr[length1] = s2[index];
+		newstr[length] = s2[index];
 		index++;
-		length1++;
+		length++;
 	}
+	newstr[length] = '\0';
 	return (newstr);
 }
 
 /*int main()
 {
-   printf("\nRESULTADO: %s", ft_strjoin("teste ai seu vacilao", "kkkk"));
+   printf("\nRESULTADO: %s", ft_strjoin("teste ai se", "kkkkkkkkkkkkkkkk"));
+   //get 2 strings together dinamic allocated
 }*/
