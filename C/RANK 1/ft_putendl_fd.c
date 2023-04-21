@@ -15,12 +15,14 @@
 void	ft_putendl_fd(char *s, int fd)
 {
 	int	index;
+	int	newline;
 
 	index = 0;
+	newline = '\n';
 	while (s[index])
 	{
 		write(fd, &s[index], 1);
 		index++;
 	}
-	write(fd, &s[index], 1);
+	write(fd, &newline, 1);
 }
