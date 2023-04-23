@@ -10,47 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "libft.h"
 
-static int	count_words(char const *s, char c)
+static char	**fill_array(char const *s, char c, char **newstr)
 {
-	int		index;
-	int		word;
-
-	index = 0;
-	word = 0;
-	while (s[index])
-	{
-		if ((s[index + 1] == c || s[index + 1] == '\0') && s[index] != c)
-			word++;
-		index++;
-	}
-	return (word);
-}
-
-static char	*strcpy2(char const *s1, char const *s2, int start, int final)
-{
-	int		index;
-	char	*newstr;
-
-	newstr = (char *)s1;
-	index = 0;
-	while (start <= final)
-	{
-		newstr[index] = s2[start];
-		start++;
-		index++;
-	}
-	newstr[index] = '\0';
-	return (newstr);
-}
-
-static char	**allocate_words(char const *s, char c, char	**newstr)
-{
-	int		index;
-	int		start;
-	int		word;
+	size_t	index;
+	size_t	start;
+	size_t	word;
 
 	index = 0;
 	word = 0;
@@ -64,28 +31,33 @@ static char	**allocate_words(char const *s, char c, char	**newstr)
 			newstr[word] = malloc((((index + 1) - start) + 1) * sizeof(char));
 			if (newstr == NULL)
 				return (NULL);
-			newstr[word] = strcpy2(newstr[word], s, start, index++);
-			word++;
+			ft_strlcpy(newstr[word++], s + start, ((index++ + 2) - start));
 			while (s[index] == c && s[index])
-				index++;
-			start = index;
+				start = ++index;
 		}
 		else
 			index++;
 	}
-	newstr[word] = NULL;
 	return (newstr);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**newstr;
+	char	**array;
+	int		index;
+	int		words;
 
-	newstr = malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (newstr == NULL)
+	index = -1;
+	words = 0;
+	while (s[++index])
+		if ((s[index + 1] == c || s[index + 1] == '\0') && s[index] != c)
+			words++;
+	array = malloc((words + 1) * sizeof(char *));
+	if (array == NULL)
 		return (NULL);
-	newstr = allocate_words(s, c, newstr);
-	return (newstr);
+	array = fill_array(s, c, array);
+	array[words] = NULL;
+	return (array);
 }
 
 /*int main()
@@ -97,11 +69,5 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (result[i])
 		printf("'%s'\n", result[i++]);
-//
-
-	// result = ft_splite("", 'a');
-
-	// res = test_single_split(7, "^^^1^^2a,^^^^3^^^^--h^^^^", '^', expected) && res;
-	
-}
-*/
+	//split a string based on the char passed as argument
+}*/
