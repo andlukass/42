@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <unistd.h>
-
 #include <stdarg.h>
+
+#include "./specifiers/c_specifier.c"
+#include "./specifiers/p_specifier.c"
+#include "./specifiers/s_specifier.c"
+#include "./specifiers/di_specifier.c"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -20,35 +24,13 @@ char	*ft_strchr(const char *s, int c)
 		return (0);
 }
 
-int c_specifier(char c)
-{
-    write(1, &c, 1);
-    return (1);
-}
+int c_specifier(char c);
 
-int s_specifier(char *str)
-{
-    int index;
+int s_specifier(char *str);
 
-    index = 0;
-    while (str[index])
-    {
-        write(1, &str[index], 1);
-        index++;
-    }
-    return (index);
-}
+int p_specifier(void *adress);
 
-int p_specifier(void *adress)
-{
-    int index;
-
-    index = 0;
-    
-    printf("%lu", (unsigned long int)adress);
-    
-    return (index);
-}
+int di_specifier(int nb);
 
 
 int convertion(char c, va_list args)
@@ -61,18 +43,16 @@ int convertion(char c, va_list args)
         length = s_specifier((char *) va_arg(args, char *));
     if (c == 'p')
         length = p_specifier((void *) va_arg(args, void *));
-    if (c == 'd')
-        write(1, &(char){'d'}, 1);
-    if (c == 'i')
-        write(1, &(char){'i'}, 1);
+    if (c == 'd' || c == 'i')
+        length = di_specifier((int) va_arg(args, int));
     if (c == 'u')
-        write(1, &(char){'u'}, 1);
+        write(1, "u", 1);
     if (c == 'x')
-        write(1, &(char){'x'}, 1);
+        write(1, "x", 1);
     if (c == 'X')
-        write(1, &(char){'X'}, 1);
+        write(1, "X", 1);
     if (c == '%')
-        write(1, &(char){'%'}, 1);
+        write(1, "%", 1);
     return (length);
 }
 
@@ -102,14 +82,13 @@ int ft_printf(const char *restrict format, ...)
     return (length);
 }   
 
-int main(void)
+/*int main(void)
 {
-    int x = 42;
-    ft_printf("vai da o %%%% %s, %p  %c cu\n", ",|||| minha pica kkk   ||||,", &x, '#');
-    //printf("vai da o %%%%%% cu");
+    //int x = 42;
+    int ori, meu;
 
-
-    // int* p = &x;
-    // printf("Endereço de memória de x: %lu\n", (unsigned long int)&x);
+    meu = ft_printf("MEU: %d\n", -2147483648);
+    ori = printf("ORI: %d\n", 4199999999);
+    printf("retornos: meu:%d e ori:%d\n", meu, ori);
     return 0;
-}
+}*/
