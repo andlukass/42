@@ -21,6 +21,7 @@ int convertion(char c, va_list args)
 {
     int length;
 
+    length = 0;
     if (c == 'c')
         length = c_specifier((char)va_arg(args, int));
     if (c == 's')
@@ -38,7 +39,7 @@ int convertion(char c, va_list args)
     if (c == '%')
     {
         length++;
-        write(1, &(char *){"%"}, 1);
+        write(1, &(char){'%'}, 1);
     }
     return (length);
 }
@@ -74,11 +75,11 @@ int ft_printf(const char *format, ...)
     // int x = 42;
     int ori, meu;
 
-    meu = ft_printf("MEU: %d\n", -2147483648);
-    ori = printf("ORI: %d\n", 2147483647);
+    // meu = ft_printf("MEU: %d\n", -2147483648);
+    // ori = printf("ORI: %d\n", 2147483647);
 
-    meu = ft_printf("MEU: %d\n", -2147483648);
-    ori = printf("ORI: %d\n", 2147483647);
+    meu = ft_printf(" %p %p ", 0, 0);
+    ori = printf(" %p %p ", 0, 0);
     printf("retornos: meu:%d e ori:%d\n", meu, ori);
     return 0;
 }*/
