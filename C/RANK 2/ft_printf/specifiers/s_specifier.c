@@ -1,3 +1,5 @@
+#include "../ft_printf.h"
+
 int s_specifier(char *str)
 {
     int index;

@@ -1,3 +1,4 @@
+#include "../ft_printf.h"
 
 int c_specifier(char c)
 {

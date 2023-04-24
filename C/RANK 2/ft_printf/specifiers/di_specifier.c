@@ -1,19 +1,21 @@
-static int	ft_putstr(char *str)
-{
-    int index;
+#include "../ft_printf.h"
 
-    index = 0;
+static int ft_putstr(char *str)
+{
+	int index;
+
+	index = 0;
 	while (str[index])
 	{
 		write(1, &str[index], 1);
 		index++;
 	}
-    return (index);
+	return (index);
 }
 
-static int	get_length(long int i)
+static int get_length(long int i)
 {
-	int	length;
+	int length;
 
 	length = 0;
 	if (i == 0)
@@ -33,9 +35,9 @@ static int	get_length(long int i)
 
 int di_specifier(int nb)
 {
-	char		str[50];
-	int			length;
-	long int	unb;
+	char str[50];
+	int length;
+	long int unb;
 
 	unb = nb;
 	length = get_length(unb);
@@ -54,5 +56,5 @@ int di_specifier(int nb)
 		unb = unb / 10;
 		length--;
 	}
-    return (ft_putstr(str));
+	return (ft_putstr(str));
 }
