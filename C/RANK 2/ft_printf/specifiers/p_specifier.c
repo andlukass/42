@@ -9,6 +9,11 @@ int p_specifier(void *adress)
 
 	index = 0;
 	nbr = (unsigned long int)adress;
+	if (!nbr)
+	{
+		write(1, (const void *)"(nil)", 5);
+		return (5);
+	}
 	// printf("\nADRESS:%lu\n", (unsigned long int)adress);
 	// printf("NBR: %lu\n",nbr);
 	write(1, "0x", 2);

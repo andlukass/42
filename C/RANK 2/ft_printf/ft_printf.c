@@ -78,8 +78,8 @@ int ft_printf(const char *format, ...)
     // meu = ft_printf("MEU: %d\n", -2147483648);
     // ori = printf("ORI: %d\n", 2147483647);
 
-    meu = ft_printf(" %p %p ", 0, 0);
-    ori = printf(" %p %p ", 0, 0);
+    meu = ft_printf(" NULL %s NULL ", NULL);
+    ori = printf(" NULL %s NULL ", NULL);
     printf("retornos: meu:%d e ori:%d\n", meu, ori);
     return 0;
 }*/
