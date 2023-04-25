@@ -31,11 +31,11 @@ int convertion(char c, va_list args)
     if (c == 'd' || c == 'i')
         length = di_specifier((int)va_arg(args, int));
     if (c == 'u')
-        write(1, "u", 1);
+        length = u_specifier((long int)va_arg(args, long int));
     if (c == 'x')
-        write(1, "x", 1);
+        length = xX_specifier((long int)va_arg(args, long int), c);
     if (c == 'X')
-        write(1, "X", 1);
+        length = xX_specifier((long int)va_arg(args, long int), c);
     if (c == '%')
     {
         length++;
@@ -70,16 +70,16 @@ int ft_printf(const char *format, ...)
     return (length);
 }
 
-/*int main(void)
-{
-    // int x = 42;
-    int ori, meu;
+// int main(void)
+// {
+//     // int x = 42;
+//     int ori, meu;
 
-    // meu = ft_printf("MEU: %d\n", -2147483648);
-    // ori = printf("ORI: %d\n", 2147483647);
+//     // meu = ft_printf("MEU: %d\n", -2147483648);
+//     // ori = printf("ORI: %d\n", 2147483647);
 
-    meu = ft_printf(" NULL %s NULL ", NULL);
-    ori = printf(" NULL %s NULL ", NULL);
-    printf("retornos: meu:%d e ori:%d\n", meu, ori);
-    return 0;
-}*/
+//     meu = ft_printf(" %x ", 10);
+//     ori = printf(" %x ", 10);
+//     printf("retornos: meu:%d e ori:%d\n", meu, ori);
+//     return 0;
+// }

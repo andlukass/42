@@ -1,5 +1,6 @@
 SRCS  = 		specifiers/s_specifier.c specifiers/p_specifier.c \
 				specifiers/c_specifier.c specifiers/di_specifier.c \
+				specifiers/u_specifier.c specifiers/xX_specifier.c \
 				ft_printf.c
 
 OBJS			= $(SRCS:.c=.o)
