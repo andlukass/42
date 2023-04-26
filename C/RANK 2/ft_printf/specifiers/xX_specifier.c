@@ -1,6 +1,6 @@
 #include "../ft_printf.h"
 
-int xX_specifier(long int nbr, char c)
+int xX_specifier(unsigned long int nbr, char c)
 {
 	unsigned long int index;
 	unsigned long int length;
@@ -9,8 +9,8 @@ int xX_specifier(long int nbr, char c)
 	index = 0;
 	if (!nbr)
 	{
-		write(1, (const void *)"(nil)", 5);
-		return (5);
+		write(1, (const void *)"0", 1);
+		return (1);
 	}
 	// printf("\nADRESS:%lu\n", (unsigned long int)adress);
 	// printf("NBR: %lu\n",nbr);

@@ -14,8 +14,6 @@ int p_specifier(void *adress)
 		write(1, (const void *)"(nil)", 5);
 		return (5);
 	}
-	// printf("\nADRESS:%lu\n", (unsigned long int)adress);
-	// printf("NBR: %lu\n",nbr);
 	write(1, "0x", 2);
 	while (nbr)
 	{

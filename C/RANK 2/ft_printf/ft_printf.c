@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <limits.h>
 
 char *ft_strchr(const char *s, int c)
 {
@@ -70,16 +71,16 @@ int ft_printf(const char *format, ...)
     return (length);
 }
 
-// int main(void)
-// {
-//     // int x = 42;
-//     int ori, meu;
+int main(void)
+{
+    int x = 42;
+    int ori, meu;
 
-//     // meu = ft_printf("MEU: %d\n", -2147483648);
-//     // ori = printf("ORI: %d\n", 2147483647);
+    // meu = ft_printf("MEU: %d\n", -2147483648);
+    // ori = printf("ORI: %d\n", 2147483647);
 
-//     meu = ft_printf(" %x ", 10);
-//     ori = printf(" %x ", 10);
-//     printf("retornos: meu:%d e ori:%d\n", meu, ori);
-//     return 0;
-// }
+    meu = ft_printf("MEU: %p \n", &x);
+     ori = printf("ORI: %p \n", &x);
+    printf("retornos: meu:%d e ori:%d\n", meu, ori);
+    return 0;
+}
