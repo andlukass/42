@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_specifier.c                                      :+:      :+:    :+:   */
+/*   ft_get_length.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 16:28:32 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 19:05:56 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/04/30 18:11:56 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/04/30 18:49:22 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
-
-int	s_specifier(char *str)
+int	ft_get_length(long int i)
 {
-	if (!str)
+	int	length;
+
+	length = 0;
+	if (i == 0)
+		return (1);
+	if (i < 0)
 	{
-		write(1, (const void *)"(null)", 6);
-		return (6);
+		i *= -1;
+		length++;
 	}
-	return (ft_putstr_len(str));
+	while (i > 0)
+	{
+		i /= 10;
+		length++;
+	}
+	return (length);
 }

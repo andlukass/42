@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:04:52 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 17:12:09 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:13:39 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,26 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-// # include "./specifiers/c_specifier.c"
-// # include "./specifiers/s_specifier.c"
-// # include "./specifiers/p_specifier.c"
-// # include "./specifiers/di_specifier.c"
-// # include "./specifiers/u_specifier.c"
-// # include "./specifiers/xx_specifier.c"
+void	ft_putstr_base(char *base, long int index, unsigned long *nbr_final);
 
-int	c_specifier(char c);
+char	*ft_strchr(const char *s, int c);
 
-int	s_specifier(char *str);
+int		ft_get_length(long int i);
 
-int	p_specifier(void *adress);
+int		ft_putstr_len(char *str);
 
-int	di_specifier(int nb);
+int		xx_specifier(unsigned int nbr, char c);
 
-int	u_specifier(unsigned int nb);
+int		u_specifier(unsigned int nb);
 
-int	xx_specifier(unsigned int nbr, char c);
+int		p_specifier(void *adress);
 
-int	ft_printf(const char *format, ...);
+int		s_specifier(char *str);
+
+int		di_specifier(int nb);
+
+int		c_specifier(char c);
+
+int		ft_printf(const char *format, ...);
 
 #endif
