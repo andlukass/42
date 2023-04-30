@@ -8,7 +8,8 @@ SRCS			= ft_strlen.c ft_memcmp.c ft_strncmp.c ft_strlcat.c ft_strlcpy.c \
 
 OBJS			= $(SRCS:.c=.o)
 
-BONUS			= ft_lstnew.c
+BONUS			= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+					ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c
 
 BONUS_OBJS		= $(BONUS:.c=.o)
 

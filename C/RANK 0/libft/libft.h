@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 20:16:33 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/04/30 23:37:17 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <unistd.h>
 # include <string.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
-	void	*content;
-	struct	s_list *next;
+	void			*content;
+	struct s_list	*next;
 }	t_list;
 
 int		ft_strlen(const char *s);
@@ -92,5 +92,17 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 t_list	*ft_lstnew(void *content);
+
+void	ft_lstadd_front(t_list **lst, t_list *new);
+
+int		ft_lstsize(t_list *lst);
+
+t_list	*ft_lstlast(t_list *lst);
+
+void	ft_lstadd_back(t_list **lst, t_list *new);
+
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+
+void	ft_lstclear(t_list **lst, void (*del)(void*));
 
 #endif
