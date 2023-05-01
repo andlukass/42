@@ -6,12 +6,15 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:04:52 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 19:13:39 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:30:16 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# define L_HEX "0123456789abcdef"
+# define U_HEX "0123456789ABCDEF"
 
 # include <stdio.h>
 # include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:27:16 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 18:07:37 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:31:03 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	p_specifier(void *adress)
 		index++;
 	}
 	length = index + 2;
-	ft_putstr_base("0123456789abcdef", index, nbr_final);
+	ft_putstr_base(L_HEX, index, nbr_final);
 	return (length);
 }
