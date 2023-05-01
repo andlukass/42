@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   p_specifier.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:27:16 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 18:07:37 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/01 13:57:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	p_specifier(void *adress)
+int p_specifier(void *adress)
 {
-	unsigned long int	index;
-	unsigned long int	length;
-	unsigned long int	nbr;
-	unsigned long int	nbr_final[50];
+	unsigned long int index;
+	unsigned long int length;
+	unsigned long int nbr;
+	unsigned long int nbr_final[50];
 
 	index = 0;
 	nbr = (unsigned long int)adress;
@@ -34,6 +34,6 @@ int	p_specifier(void *adress)
 		index++;
 	}
 	length = index + 2;
-	ft_putstr_base("0123456789abcdef", index, nbr_final);
+	ft_putstr_base(L_HEX, index, nbr_final);
 	return (length);
 }

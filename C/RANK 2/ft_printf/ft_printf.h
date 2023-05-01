@@ -3,40 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:04:52 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 19:13:39 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/01 13:53:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#define FT_PRINTF_H
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdarg.h>
+#define L_HEX "0123456789abcdef"
+#define U_HEX "0123456789ABCDEF"
 
-void	ft_putstr_base(char *base, long int index, unsigned long *nbr_final);
+#include <stdio.h>
+#include <unistd.h>
+#include <stdarg.h>
 
-char	*ft_strchr(const char *s, int c);
+void ft_putstr_base(char *base, long int index, unsigned long *nbr_final);
 
-int		ft_get_length(long int i);
+char *ft_strchr(const char *s, int c);
 
-int		ft_putstr_len(char *str);
+int ft_get_length(long int i);
 
-int		xx_specifier(unsigned int nbr, char c);
+int ft_putstr_len(char *str);
 
-int		u_specifier(unsigned int nb);
+int xx_specifier(unsigned int nbr, char c);
 
-int		p_specifier(void *adress);
+int u_specifier(unsigned int nb);
 
-int		s_specifier(char *str);
+int p_specifier(void *adress);
 
-int		di_specifier(int nb);
+int s_specifier(char *str);
 
-int		c_specifier(char c);
+int di_specifier(int nb);
 
-int		ft_printf(const char *format, ...);
+int c_specifier(char c);
+
+int ft_printf(const char *format, ...);
 
 #endif
