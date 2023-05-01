@@ -60,5 +60,6 @@ int	ft_printf(const char *format, ...)
 		}
 		index++;
 	}
+	va_end(args);
 	return (length);
 }

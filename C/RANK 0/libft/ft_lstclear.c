@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 23:36:45 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 23:41:19 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:29:31 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void    ft_lstclear(t_list **lst, void (*del)(void*))
 {
-    t_list *temp;
-    t_list *aux;
+    t_list	*temp;
 
-    temp = *lst;
-    while(temp->next)
-    {
-        aux = temp;
-        del(aux);
-        free(aux);
-        temp = temp->next;
-    }
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		del((*lst)->content);
+        free(*lst);
+		*lst = temp;
+	}
 }
+
+
+
