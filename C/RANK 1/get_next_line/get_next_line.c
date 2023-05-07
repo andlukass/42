@@ -1,84 +1,129 @@
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
+#include "get_next_line.h"
 
-static char *get_file_length(int fd)
+int	ft_strlen(const char *s)
 {
-	char *buf;
-	char *new_buffer;
-	long long int nbytes;
-	long long int buf_size;
+	int	index;
 
-	buf_size = 0;
-	buf = malloc(10);
-	if (buf == NULL)
-		return (0);
-	while ((nbytes = read(fd, buf + buf_size, 10)) > 0)
-	{
-	buf_size += nbytes;
-	if (buf_size % 10 == 0)
-	{
-		new_buffer = malloc(buf_size + 10);
-		if (new_buffer == NULL)
-			return (0);
-		memcpy(new_buffer, buf, buf_size);
-		free(buf);
-		buf = new_buffer;
-	}
-	}
-	return (buf);
+	index = 0;
+	while ((s[index] != '\0'))
+		index++;
+	return (index);
 }
 
-
-
-char *get_next_line(int fd)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	// int fd;
-	int size;
+	char	*newstr;
+	int		index;
+	int		length;
 
-	int i = 0;
-	char *file;
-
-	char *final;
-	// fd = open("teste.txt", O_RDONLY);
-	file = get_file_length(fd);
-	
-	while (file && file[i] != '\n')
-		i++;
-	if (file[i] == '\n')
-		i++;
-	size = i;
-	i = 0;
-
-	final = (char *)malloc(sizeof(char) * (size + 1));
-	// printf("\n%d,%d\n",size,i);
-	 //printf("\nVAI DA O CU\n");
-	while (i < size)
+	if (!s1)
 	{
-		final[i] = file[i];
-		i++;
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
 	}
-	return(final);
-	// close(fd);
-	//return (0);
+	newstr = (char *) malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1)
+			* sizeof(char));
+	if (newstr == NULL)
+		return (NULL);
+	index = 0;
+	length = -1;
+	while (s1[++length])
+		newstr[length] = s1[length];
+	while (s2[index])
+	{
+		newstr[length] = s2[index];
+		index++;
+		length++;
+	}
+	newstr[length] = '\0';
+	free(s1);
+	return (newstr);
 }
 
+char	*get_file(int fd, char *file)
+{
+	int	bytes;
+	char	*buff;
 
-/*		byte por byte
-while ((nbytes = read(fd, buf, sizeof(buf))) > 0)
+	bytes = 1;
+	buff = malloc(sizeof(char) * BUFFER_SIZE);
+	while (bytes > 0)
 	{
-		if (buf[0] == '\n')
-			printf("AI MEU DEUS GENTE QUEBRO A LINHA");
-		printf("%c", buf[0]);
+		bytes = read(fd, buff, BUFFER_SIZE);
+		buff[bytes] = '\0';
+		file = ft_strjoin(file, buff);
 	}
-*/
+	free(buff);
+	return (file);
+}
 
-/*		printar file
-write(1, "LA VEM A PEDRADA MALUCO\n",25);
-	while (file && file[i] != '\n')
-		write(1, &file[i++], 1);
-	write(1, "\n", 1);
+char	*make_line(char *file)
+{
+	char *line;
+	int index;
 
-*/
+	index = 0;
+	if (!file[index])
+		return (NULL);
+	while (file[index] && file[index] != '\n')
+		index++;
+	if (index == 0)
+		return (NULL);
+	line = malloc(sizeof(char) * (index + 2));
+	if (!line)
+		return (NULL);
+	index = 0;
+	while (file[index] && file[index] != '\n')
+	{	
+		line[index] = file[index];
+		index++;
+	}
+	line[index] = '\n';
+	index++;
+	line[index] = '\0';
+	return (line);
+}
+
+char	*rm_line(char *file)
+{
+	int index = 0;
+	int start;
+	int length = 0;
+	char *new_file;
+
+	while (file[index] && file[index]  != '\n')
+		index++;
+	if (file[index] == '\n')
+		index++;
+	start = index;
+	while (file[index])
+	{	
+		index++;
+		length++;
+	}
+	new_file = malloc(sizeof(char) * (length + 1));
+	index = 0;
+	while (file[start])
+	{
+		new_file[index] = file[start];
+		index++;
+		start++;
+	}
+	new_file[index] = '\0';
+	return (new_file);
+}
+
+char	*get_next_line(int fd)
+{	
+	static char	file[BUFFER_SIZE + 1];
+	char	*line;
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 99)
+		return (NULL);
+	if (!file)
+		file = get_file(fd, file);
+	line = make_line(file);
+	if (!line)
+		return (NULL);
+	file = rm_line(file);
+	return (line);
+}
