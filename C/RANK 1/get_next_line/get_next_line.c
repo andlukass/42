@@ -115,15 +115,21 @@ char	*rm_line(char *file)
 
 char	*get_next_line(int fd)
 {	
-	static char	file[BUFFER_SIZE + 1];
+	static char	*file;
 	char	*line;
+
+	if (read(fd, 0, 0) < 0)
+		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 99)
 		return (NULL);
 	if (!file)
 		file = get_file(fd, file);
 	line = make_line(file);
 	if (!line)
+	{	
+		free(line);
 		return (NULL);
+	}
 	file = rm_line(file);
 	return (line);
 }
