@@ -8,16 +8,14 @@
 int main()
 {
 	int fd;
+	char *t;
 
 	fd = open("teste.txt", O_RDONLY);
-	//fd = 100;
-	//get_next_line(fd);
-	printf("%s",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
+	for (int i = 0; i < 4; i++)
+	{
+		t = get_next_line(fd);
+		printf("linha %d: %s", i+1, t);
+		free(t);
+	}
 	close(fd);
 }

@@ -1,13 +1,21 @@
 #include "get_next_line.h"
 
-char* cu()
+char* ft_teste()
 {
-    char line[5] = "kkk";
-    return line;
+    char *teste;
+    teste = malloc(sizeof(char) * 10);
+    teste = strcpy(teste, "123456789");
+    return teste;
 }
 
 int main()
 {
-    printf("%s", cu());
+    char t[30] = "123456789";
+    int fd = open("teste.txt", O_RDONLY);
+    char *line;
+
+    read(fd, t, 5);
+	
+    printf("%s", t);
     return 0;
 }
