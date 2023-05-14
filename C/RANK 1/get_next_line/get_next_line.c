@@ -60,6 +60,7 @@ char	*get_file(int fd, char *file)
 char	*make_line(char *file)
 {
 	char *line;
+	char *teste;
 	int index;
 
 	index = 0;
@@ -69,7 +70,7 @@ char	*make_line(char *file)
 		index++;
 	if (index == 0)
 		return (NULL);
-	line = malloc(sizeof(char) * (index + 2));
+	line = (char *) malloc(sizeof(char) * (index + 2));
 	if (!line)
 		return (NULL);
 	index = 0;
@@ -116,7 +117,7 @@ char	*rm_line(char *file)
 char	*get_next_line(int fd)
 {	
 	static char	*file;
-	char	*line;
+	static char	line[10] = "123456789";
 
 	if (read(fd, 0, 0) < 0)
 		return (NULL);
@@ -124,12 +125,14 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!file)
 		file = get_file(fd, file);
-	line = make_line(file);
-	if (!line)
-	{	
-		free(line);
-		return (NULL);
-	}
+	//line = make_line(file);
+	// if (!line)
+	// {	
+	// 	free(line);
+	// 	return (NULL);
+	// }
 	file = rm_line(file);
 	return (line);
 }
+LINE VAI SER IGUAL A STRING FILE DO INDICE X AO Y
+E  REMOVE VAI SER FILE = FILE + (LENGTH DA LINE)
