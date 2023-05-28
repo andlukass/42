@@ -13,6 +13,15 @@
 //#include <stdio.h>
 #include "libft.h"
 
+char	*sec_malloc(char *str, int size)
+{
+	str = malloc(size);
+	if (str == NULL)
+		return (NULL);
+	str[0] = '\0';
+	return (str);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	index;
@@ -20,18 +29,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*newstr;
 
 	size = 0;
+	newstr = NULL;
 	while (s[size])
 		size++;
 	if (size < start)
-	{
-		newstr = malloc(sizeof(char));
-		newstr[0] = '\0';
-		return (newstr);
-	}
+		return (sec_malloc(newstr, sizeof(char)));
 	size = size - start;
 	if (size < len)
 		len = size;
-	newstr = (char *)malloc((len + 1) * sizeof(char));
+	newstr = malloc((len + 1) * sizeof(char));
 	if (newstr == NULL)
 		return (NULL);
 	index = -1;

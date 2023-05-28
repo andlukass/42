@@ -13,6 +13,18 @@
 #include <stdio.h>
 #include "libft.h"
 
+char	*free_full_array(char **array, int pos)
+{
+	if (array[pos] == NULL)
+	{
+		while (pos > 0)
+			free(array[--pos]);
+		free(array);
+		return (NULL);
+	}
+	return ("true");
+}
+
 static char	**fill_array(char const *s, char c, char **newstr)
 {
 	size_t	index;	
@@ -29,7 +41,7 @@ static char	**fill_array(char const *s, char c, char **newstr)
 		if ((s[index + 1] == c || s[index + 1] == '\0') && s[index] != c)
 		{
 			newstr[word] = malloc(((++index - start) + 1) * sizeof(char));
-			if (newstr == NULL)
+			if (free_full_array(newstr, word) == NULL)
 				return (NULL);
 			ft_strlcpy(newstr[word++], s + start, (index - start) + 1);
 			while (s[index] == c && s[index])
@@ -56,6 +68,8 @@ char	**ft_split(char const *s, char c)
 	if (array == NULL)
 		return (NULL);
 	array = fill_array(s, c, array);
+	if (array == NULL)
+		return (NULL);
 	array[words] = NULL;
 	return (array);
 }
