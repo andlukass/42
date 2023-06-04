@@ -5,10 +5,9 @@ SRCS = specifiers/s_specifier.c specifiers/p_specifier.c \
 	   functions/ft_putstr_base.c functions/ft_get_length.c \
 	   ft_printf.c 
 
-OBJS = $(addprefix .objs/, $(SRCS:.c=.o))
+OBJS = $(SRCS:.c=.o)
 
-CC = gcc
-RM = rm -f
+RM = rm -f -r
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
@@ -17,13 +16,8 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
-
-.objs/%.o: %.c
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
-	$(RM) -r .objs
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)

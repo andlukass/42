@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:28:32 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 19:05:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/28 21:47:00 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	s_specifier(char *str)
 {
 	if (!str)
-	{
-		write(1, (const void *)"(null)", 6);
-		return (6);
-	}
+		return (write(1, "(null)", 6));
 	return (ft_putstr_len(str));
 }

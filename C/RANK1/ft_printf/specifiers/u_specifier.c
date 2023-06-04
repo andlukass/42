@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:29:58 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 19:12:20 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:16:41 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	u_specifier(unsigned int nb)
 	length = ft_get_length(unb);
 	str[length] = '\0';
 	if (unb == 0)
-		str[0] = 0 + '0';
+		str[0] = '0';
 	length--;
 	while (unb > 0)
 	{

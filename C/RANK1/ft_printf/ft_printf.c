@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:21:30 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/04/30 19:13:47 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/28 21:37:57 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	convertion(char c, va_list args)
 	if (c == 'u')
 		length = u_specifier((unsigned int)va_arg(args, unsigned int));
 	if (c == 'x' || c == 'X')
-		length = xx_specifier((long int)va_arg(args, long int), c);
+		length = xx_specifier((unsigned int)va_arg(args, unsigned int), c);
 	if (c == '%')
 	{
 		length++;

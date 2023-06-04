@@ -11,11 +11,12 @@ int main()
 	char *t;
 
 	fd = open("teste.txt", O_RDONLY);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		t = get_next_line(fd);
-		printf("linha %d: %s", i+1, t);
+		printf("\nlinha %d: %s\n", i+1, t);
 		free(t);
 	}
+	//printf("linha: %s", get_next_line(fd));
 	close(fd);
 }

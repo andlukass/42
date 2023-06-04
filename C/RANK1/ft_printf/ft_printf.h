@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:04:52 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/05/01 19:30:16 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:19:29 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-void	ft_putstr_base(char *base, long int index, unsigned long *nbr_final);
-
 char	*ft_strchr(const char *s, int c);
+
+int		ft_putstr_base(char *base, long int index,
+			unsigned long int *nbr_final);
 
 int		ft_get_length(long int i);
 
