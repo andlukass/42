@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/04 21:45:19 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/06/04 21:52:11 by llopes-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	ft_strchr(const char *s, int c)
@@ -5,6 +17,10 @@ int	ft_strchr(const char *s, int c)
 	int	index;
 
 	index = 0;
+	if (!*s)
+		return (0);
+	if ((char)c == s[index])
+		return (1);
 	while (s[index])
 	{
 		if ((char)c == s[index])
@@ -47,17 +63,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s1[++length])
 		newstr[length] = s1[length];
 	while (s2[index])
-	{
-		newstr[length] = s2[index];
-		index++;
-		length++;
-	}
-	newstr[length] = '\0';
+		newstr[length++] = s2[index++];
 	free(s1);
+	newstr[length] = '\0';
 	return (newstr);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_bzero(void *s, size_t n)
 {
 	size_t	index;
 
@@ -67,4 +79,5 @@ void	ft_bzero(void *s, size_t n)
 		((unsigned char *)s)[index] = 0;
 		index++;
 	}
+	return (NULL);
 }

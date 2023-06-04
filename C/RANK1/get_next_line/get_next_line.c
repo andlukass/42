@@ -1,78 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/04 21:45:12 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/06/04 22:02:12 by llopes-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-int move_buffer(char *buffer)
-{
-	int index = 0;
-	int start = 0;
-	int size;
-	while (buffer[index])
-	{
-		if (buffer[index] == '\n')
-		{
-			size = index;
-			index++;
-			break ;
-		}
-		index++;
-	}
-	while (buffer[index])
-	{
-		buffer[start++] = buffer[index++];
-	}
-	ft_bzero(buffer + start, ft_strlen(buffer));
-	return (size);
-}
-
-int get_buffer_size(char *buffer)
+void	rmbreaks(char *line)
 {
 	int	index;
+	int	flag;
+	int	iflag;
 
 	index = 0;
-	while ((buffer[index] != '\0') && (buffer[index] != '\n'))
-		index++;
-	return (index);
+	flag = 0;
+	iflag = 0;
+	if (!ft_strchr(line, '\n'))
+		return ;
+	while (line[index])
+	{
+		if (line[index] == '\n' && !flag)
+		{	
+			flag++;
+			iflag++;
+			index++;
+		}
+		if (flag)
+			line[index] = '\0';
+		if (iflag)
+			iflag = 0;
+		else
+			index++;
+	}
 }
 
-char *getn(char *line, char *buffer)
+void	rmlastline(char *buffer)
 {
-	int size;
-	int index = 0;
+	int	index;
+	int	flag;
+	int	start;
 
-	size = get_buffer_size(buffer);
-	//printf("start: %d\n", size);
-	line = malloc((sizeof(char) * size) + 1);
-	while (index < size)
-	{	
-		line[index] = buffer[index];
+	index = 0;
+	flag = 0;
+	start = 0;
+	while (buffer[index])
+	{
+		if (buffer[index] == '\n' && !flag++)
+			index++;
+		if (flag)
+			buffer[start++] = buffer[index];
 		index++;
 	}
-	line[index] = '\0';
-	return (line);
+	while (buffer[start])
+		buffer[start++] = '\0';
 }
 
 char	*get_next_line(int fd)
 {	
 	static char	buffer[BUFFER_SIZE + 1];
-	char *line;
-	char *temp;
-	
-	if (*buffer)
-	{	
-		temp = buffer;
-	printf("\n temp: %s\n", temp);
-	}
-	while (1)
-	{
-		read(fd, buffer, BUFFER_SIZE);
-		if (ft_strchr(buffer,'\n') || ft_strchr(buffer,'\0'))
-		{	
-			printf("\n brekou\n");
-			break;
-		}
-	}
-	printf("\n BUFFER: %s\n", buffer);
-	line = getn(line, buffer);
-	move_buffer(buffer);
+	int			controller;
+	char		*line;
 
+	controller = 1;
+	if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, 0, 0) < 0))
+		return (ft_bzero(buffer, BUFFER_SIZE));
+	line = ft_strjoin(NULL, buffer);
+	while (!(ft_strchr(line, '\n')) && controller)
+	{
+		ft_bzero(buffer, BUFFER_SIZE);
+		controller = read(fd, buffer, BUFFER_SIZE);
+		line = ft_strjoin(line, buffer);
+	}
+	rmbreaks(line);
+	rmlastline(buffer);
+	if (!line || !line[0])
+	{
+		free(line);
+		return (NULL);
+	}
 	return (line);
 }
