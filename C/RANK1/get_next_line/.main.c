@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:56:39 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/04 21:57:24 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:23:42 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main()
 	int		flag;
 
 	flag = 0;
-	fd = open("teste.txt", O_RDONLY);
+	fd = -1;//open("teste.txt", O_RDONLY);
 	for (int i = 0; i < 7; i++)
 	{
 		if (flag)
@@ -33,7 +33,7 @@ int	main()
 		printf("\nlinha %d: %s", i+1, t);
 		if (!t)
 			flag = 1;
-		free(t);
+		//free(t);
 	}
 	//printf("linha: %s", get_next_line(fd));
 	close(fd);
