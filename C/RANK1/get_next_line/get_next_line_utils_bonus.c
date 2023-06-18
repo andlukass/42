@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:45:19 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/05 17:35:43 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/18 15:19:20 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@ int	ft_strchr(const char *s, int c)
 	int	index;
 
 	index = 0;
-	if (!*s)
+	if (!s[0])
 		return (0);
-	if ((char)c == s[index])
-		return (1);
 	while (s[index])
 	{
 		if ((char)c == s[index])
-			return (index);
+			return (1);
 		index++;
 	}
 	if ((char)c == s[index])
-		return (index);
+		return (1);
 	else
 		return (0);
 }
@@ -77,9 +75,6 @@ void	*ft_bzero(char *s, size_t n)
 		return (NULL);
 	index = 0;
 	while (index < n)
-	{
-		s[index] = '\0';
-		index++;
-	}
+		s[index++] = '\0';
 	return (NULL);
 }

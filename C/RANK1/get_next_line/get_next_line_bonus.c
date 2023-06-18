@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:45:12 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/18 13:55:37 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/18 15:07:15 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,14 @@
 void	rmfirstline(char *buffer)
 {
 	int	index;
-	int	flag;
 	int	start;
 
 	index = 0;
-	flag = 0;
 	start = 0;
-	while (buffer[index])
-	{
-		if (buffer[index] == '\n' && !flag++)
-			index++;
-		if (flag)
-			buffer[start++] = buffer[index];
+	while (buffer[index] && buffer[index] != '\n')
 		index++;
-	}
+	while (buffer[index] && buffer[++index])
+		buffer[start++] = buffer[index];
 	while (buffer[start])
 		buffer[start++] = '\0';
 }
@@ -36,29 +30,12 @@ void	rmfirstline(char *buffer)
 void	rmbreaks(char *line, char *buffer)
 {
 	int	index;
-	int	flag;
-	int	iflag;
 
 	index = 0;
-	flag = 0;
-	iflag = 0;
-	if (!ft_strchr(line, '\n'))
-		return ;
-	while (line[index])
-	{
-		if (line[index] == '\n' && !flag)
-		{	
-			flag++;
-			iflag++;
-			index++;
-		}
-		if (flag)
-			line[index] = '\0';
-		if (iflag)
-			iflag = 0;
-		else
-			index++;
-	}
+	while (line[index] && line[index] != '\n')
+		index++;
+	while (line[index] && line[++index])
+		line[index] = '\0';
 	rmfirstline(buffer);
 }
 
