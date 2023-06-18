@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:45:12 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/17 19:20:27 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/18 13:58:33 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,17 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	controller = 1;
-	if (BUFFER_SIZE <= 0 || (read(fd, 0, 0) < 0))
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (ft_bzero(buffer, BUFFER_SIZE));
 	line = ft_strjoin(NULL, buffer);
-	while (!(ft_strchr(line, '\n')) && controller)
+	while (!(ft_strchr(line, '\n')) && controller > 0)
 	{
 		ft_bzero(buffer, BUFFER_SIZE);
 		controller = read(fd, buffer, BUFFER_SIZE);
 		line = ft_strjoin(line, buffer);
 	}
 	rmbreaks(line, buffer);
-	if (!line || !line[0])
+	if (!line || !line[0] || controller < 0)
 	{
 		free(line);
 		return (NULL);
