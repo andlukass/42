@@ -6,13 +6,13 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:45:12 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/05 20:31:46 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:23:13 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	rmfirstine(char *buffer)
+void	rmfirstline(char *buffer)
 {
 	int	index;
 	int	flag;
@@ -59,7 +59,7 @@ void	rmbreaks(char *line, char *buffer)
 		else
 			index++;
 	}
-	rmfirstine(buffer);
+	rmfirstline(buffer);
 }
 
 char	*get_next_line(int fd)
@@ -71,7 +71,7 @@ char	*get_next_line(int fd)
 	controller = 1;
 	if (BUFFER_SIZE <= 0 || (read(fd, 0, 0) < 0) || fd >= FOPEN_MAX)
 	{
-		if (fd <= FOPEN_MAX && fd > 0)
+		if (fd > 0)
 			ft_bzero(buffer[fd], BUFFER_SIZE);
 		return (NULL);
 	}
