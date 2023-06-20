@@ -29,17 +29,34 @@ int	ft_atoi(const char *str)
 	return (result * negative);
 }
 
-void handler(int signal) {
-    // Função de tratamento do sinal
-    printf("DSA BDHABSJHDBAJSDBAS: %d\n", 100);
-}
-
-int	main(int argc, char *argv[])
+int	send_message(int pid, char a)
 {
-	// struct sigaction sa = {0};
-	// sa.sa_handler = &handler;
-	// sa.sa_flags = 10;
-	// sigaction(SIGUSR1, &sa, NULL);
-	kill(ft_atoi(argv[1]), SIGUSR1);
+	int bit = 7;
+	while(bit >= 0)
+	{
+		if((a >> bit) & 1)
+			kill(pid, SIGUSR1);//1
+		else
+			kill(pid, SIGUSR2);//0
+		usleep(100);
+		bit--;
+	}
 	return 0;
 }
+//0110 0001
+int	main(int argc, char *argv[])
+{
+	int i = 0;
+	if (argc != 3)
+		return (1);
+	while(argv[2][i])
+	{
+		send_message((ft_atoi(argv[1])), argv[2][i]);
+		i++;
+	}
+	return 0;
+}
+// SIGUSR1 -- 10
+// SIGUSR2 -- 12
+
+//0110 0001 = a
