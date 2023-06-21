@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:48:46 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/21 20:42:23 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:46:34 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char *argv[])
 		{	
 			write(1, "signal received by the server, exiting the program...", 50);
 			i--;
-		}//"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		}
 		exit(0);
 	}
 	return (0);
