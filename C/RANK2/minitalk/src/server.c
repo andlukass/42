@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:48:54 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/21 18:46:38 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:28:20 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	main(void)
 
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = signal_handler;
-	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, 0);
 	sigaction(SIGUSR2, &sa, 0);
 	buffer = ft_itoa(getpid());

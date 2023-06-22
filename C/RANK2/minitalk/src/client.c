@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:48:46 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/21 20:46:34 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:37:55 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	signal(SIGUSR1, signal_handler);
 	while (argv[2][i])
-	{
-		send_message((ft_atoi_base(argv[1], 10)), argv[2][i]);
-		i++;
-	}
-	i = 1;
-	while (i)
-	{
-		if (g_flag)
-		{	
-			write(1, "signal received by the server, exiting the program...", 50);
-			i--;
-		}
-		exit(0);
-	}
+		send_message((ft_atoi_base(argv[1], 10)), argv[2][i++]);
+	if (g_flag)
+		write(1, "signal received by the server, exiting the program...", 50);
+	exit(0);
 	return (0);
 }
