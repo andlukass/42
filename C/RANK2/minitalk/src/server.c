@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:48:54 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/22 13:28:20 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:54:27 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	signal_handler(int sig, siginfo_t *info, void *context)
 	if (index == 8)
 	{	
 		binary[index] = '\0';
+		//write(1, binary, 9);
 		decimal = ft_atoi_base(binary, 2);
 		character = (char)decimal;
 		write(1, &character, 1);

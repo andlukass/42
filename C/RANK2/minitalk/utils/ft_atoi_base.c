@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:19:20 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/06/21 20:12:02 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:37:35 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_atoi_base(char *s, int base)
 		j = 0;
 		while (j < base)
 		{
-			if (DIGITS[j] == s[i])
+			if (s[i] == DIGITS[j])
 			{
 				digit = j;
 				break ;
