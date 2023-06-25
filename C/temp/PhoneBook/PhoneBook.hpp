@@ -6,7 +6,6 @@
 class PhoneBook
 {
 private:
-	int _arrSize = 8;
 	Contact _contacts[8];
 
 public:
@@ -19,5 +18,7 @@ public:
 	ContactData Search(int i);
 
 };
+
+	static int _arrSize = 8;
 
 #endif
