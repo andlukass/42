@@ -4,45 +4,28 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
+# include <cstdlib>
 # include "Contact.hpp"
 
 class PhoneBook
 {
 public:
+	PhoneBook();
+	PhoneBook(const PhoneBook &src);
+	PhoneBook &operator=(const PhoneBook &rhs);
+	~PhoneBook();
+
+	void Add();
+	void showInfo(int i);
+	int getIndex(int i);
+	std::string getName(int i);
+	std::string getNickname(int i);
+	std::string getLastName(int i);
+	std::string getNumber(int i);
+	std::string getDarkestSecret(int i);
+private:
 	Contact contact[8];
-
-	void Add(int i)
-	{
-		contact[i].index = Contact::s_index;
-
-		std::cout << "Write the contact name:" << std::endl;
-		std::cout << ">";
-		std::cin >> contact[i].name;
-		std::cout << std::endl;
-
-		std::cout << "Write the contact last name:" << std::endl;
-		std::cout << ">";
-		std::cin >> contact[i].lastName;
-		std::cout << std::endl;
-
-		std::cout << "Write the contact nickname:" << std::endl;
-		std::cout << ">";
-		std::cin >> contact[i].nickname;
-		std::cout << std::endl;
-
-		std::cout << "Write the contact number:" << std::endl;
-		std::cout << ">";
-		std::cin >> contact[i].number;
-		std::cout << std::endl;
-
-		std::cout << "Write the contact darkest secret:" << std::endl;
-		std::cout << ">";
-		std::cin >> contact[i].darkestSecret;
-		std::cout << std::endl;
 		
-		Contact::s_index++;
-	}
-
 };
 
 void search(PhoneBook newContact);

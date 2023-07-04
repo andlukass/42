@@ -1,48 +1,67 @@
 #include "PhoneBook.hpp"
 
-static std::string truncateString(const std::string& str) {
-    if (str.length() <= 10) {
-        return str;
-    } else {
-        return str.substr(0, 10 - 1) + ".";
-    }
-}
-
-static void printDiv()
+std::string truncateString(const std::string& str)
 {
-	std::cout << "+" << std::setw(44) << std::setfill('-') << "+";
-	std::cout << std::endl;
+	if (str.length() <= 10)
+		return str;
+	else
+		return str.substr(0, 10 - 1) + ".";
 }
 
-static void printTitle()
+void printDiv()
+{
+	std::cout << "+" << std::setw(44) << std::setfill('-') << "+\n";
+}
+
+void printTitle()
 {
 	printDiv();
-	std::cout << "|     index|      name|  nickname| last name|";
-	std::cout << std::endl;
+	std::cout << "|     index|      name|  nickname| last name|\n";
 	printDiv();
 }
 
-static void printLine(PhoneBook newContact)
+static void printLine(PhoneBook newContact, int i)
 {
-	std::cout << "|";
-	std::cout << std::setw(10) << std::setfill(' ') 
-	<< newContact.contact[0].index << "|";
+	if(i == 0 && newContact.getName(0).size())
+		printTitle();
 
-	std::cout << std::setw(10) << std::setfill(' ') 
-	<< truncateString(newContact.contact[0].name) << "|";
+	while(newContact.getName(i).size() > 0)
+	{
+		std::cout << "|";
+		std::cout << std::setw(10) << std::setfill(' ') 
+		<< newContact.getIndex(i) << "|";
 
-	std::cout << std::setw(10) << std::setfill(' ') 
-	<< truncateString(newContact.contact[0].nickname) << "|";
+		std::cout << std::setw(10) << std::setfill(' ') 
+		<< truncateString(newContact.getName(i)) << "|";
 
-	std::cout << std::setw(10) << std::setfill(' ') 
-	<< truncateString(newContact.contact[0].lastName) << "|";
-	std::cout << std::endl;
-	printDiv();
+		std::cout << std::setw(10) << std::setfill(' ') 
+		<< truncateString(newContact.getNickname(i)) << "|";
+
+		std::cout << std::setw(10) << std::setfill(' ') 
+		<< truncateString(newContact.getLastName(i)) << "|";
+		std::cout << std::endl;
+		printDiv();
+		i++;
+		if(i == 8)
+			break;
+	}
 }
 
 void search(PhoneBook newContact)
 {
-	printTitle();
-	for(int i = 0; i < 4; i++)
-		printLine(newContact);
+	int i = 0;
+	std::string index;
+	std::string toCompare = "12345678";
+
+	if(newContact.getName(0).size() == 0)
+		std::cout << "no contacts to show, try 'ADD' command.\n";
+	else
+	{
+		printLine(newContact, i);
+		std::cout << "choose the contact index to see more details\n> ";
+		std::getline(std::cin, index);
+		std::cout << std::endl;
+		if(toCompare.find(index) != std::string::npos)
+			newContact.showInfo(std::atoi((index.c_str()) - 1));
+	}
 }

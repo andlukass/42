@@ -1,28 +1,35 @@
-CC = g++ -Wall -Werror -Wextra
+NAME		= phonebook
+CC		= g++
+FLAGS    	= -Wall -Wextra -Werror -std=c++98
 
-SRCS = phoneBook.cpp search.cpp
+RED		= \033[1;31m
+GREEN		= \033[1;32m
+YELLOW		= \033[1;33m
+CYAN 		= \033[1;36m
 
-OBJS = $(SRCS:.cpp=.o)
+SRCS		=	main.cpp \
+		Contact.cpp PhoneBook.cpp search.cpp
 
-NAME = phonebook
+OBJS		= ${SRCS:.cpp=.o}
 
-CFLAGS		= -Wall -Wextra -Werror -std=c++98
+.o:
+		${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
 
-.cpp.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.cpp=.o}
+${NAME}:	${OBJS}
+			@echo "${GREEN}Compiling ${CYAN}${NAME} ..."
+			${CC} ${FLAGS} -o ${NAME} ${OBJS}
+			@echo "${GREEN}${NAME} created ✔️"
 
-$(NAME):	${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS}
-
-all:		$(NAME)
+all:		${NAME}
 
 clean:
-			${RM} ${OBJS}
+			@ rm -f ${OBJS}
+			@ echo "${RED}Deleting ${CYAN}${NAME} objs ✔️"
 
 fclean:		clean
-			${RM} $(NAME)
+			@ rm -f ${NAME}
+			@ echo "${RED}Deleting ${CYAN}${NAME} binary ✔️"
 
 re:			fclean all
 
 .PHONY:		all clean fclean re
-
