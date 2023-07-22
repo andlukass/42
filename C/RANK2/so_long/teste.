@@ -1,0 +1,46 @@
+void move_sprite(t_avatar *avatar, int initial)
+{
+	avatar->movement.y = initial;
+	avatar->movement.x = avatar->movement.x + 64;
+	if(avatar->movement.x > 400)
+		avatar->movement.x = 10;
+}
+
+____________________________________________________
+
+if(control == 115 || control == 65364) // s
+	{
+		move_sprite(&game->avatar, 9);
+		if(game->map_splited[line+1][x+1] == '1' &&
+			game->avatar.body.x % 32 != 0)
+			x++;
+		if(game->map_splited[line+1][x] != '1' ||
+			game->avatar.body.y % 32 == 0)
+			game->avatar.body.y = game->avatar.body.y + player_speed;
+	}
+	if(control == 119 || control == 65362) // w
+	{
+		move_sprite(&game->avatar, 200);
+		if(game->map_splited[line-1][x+1] == '1' &&
+			game->avatar.body.x % 32 != 0)
+			x++;
+		if(game->map_splited[line-1][x] != '1' ||
+			game->avatar.body.y % 32 != 0)
+			game->avatar.body.y = game->avatar.body.y - player_speed;
+			
+	}
+	if(control == 100 || control == 65363) // d
+	{
+		move_sprite(&game->avatar, 135);
+		if(game->map_splited[line][x+1] != '1')
+			game->avatar.body.x = game->avatar.body.x + player_speed;
+	}
+	if(control == 97 || control == 65361) // a
+	{
+		move_sprite(&game->avatar, 70);
+
+
+	game.avatar.movement.x = 12;
+	game.avatar.movement.y = 10;
+	game.avatar.movement.width = 40;
+	game.avatar.movement.height = 55;
