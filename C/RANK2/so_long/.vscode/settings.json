@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"mlx.h": "c",
-		"so_long.h": "c",
-		"signal.h": "c",
-		"__locale": "c"
-	}
-}
