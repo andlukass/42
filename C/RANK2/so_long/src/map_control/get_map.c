@@ -14,7 +14,6 @@
 
 static void	get_map_size(t_game *game)
 {
-	int	index;
 	int	lines;
 
 	lines = ft_strchrcnt(game->map, '\n') + 1;

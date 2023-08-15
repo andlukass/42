@@ -26,11 +26,11 @@ OBJ = $(SRC:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -L.mlx -lmlx -I.mlx  -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) -Wall -Wextra -Werror $(OBJ) -L.mlx -lmlx -I.mlx  -lXext -lX11 -lm -lz -o $(NAME)
 	@echo "\n$(GREEN)> Compilation done!🎉\n$(END)"
 
 %.o: %.c
-	@$(CC) -I.mlx  -c $< -o $@
+	@$(CC) -Wall -Wextra -Werror -I.mlx  -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ)

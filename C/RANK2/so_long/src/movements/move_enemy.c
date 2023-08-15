@@ -51,7 +51,6 @@ static char	seek_player(t_avatar enemy, int p_x, int p_line, char random)
 void	move_enemy(t_game *game)
 {
 	int		random;
-	char	enemy_cd;
 
 	random = get_random_dir(game->enemy_blocked + game->moves);
 	game->enemy.closed_direction = is_closed(&game->enemy, game->map_splited);

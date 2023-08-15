@@ -36,7 +36,6 @@ static int	is_retangular(char **map)
 static int	has_walls(char **map)
 {
 	int	i;
-	int	j;
 	int	length;
 
 	i = 0;
