@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 13:43:23 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/13 16:24:36 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:17:46 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	init_game_vars(t_game *game)
 	game->time = 0;
 	game->ssj = 0;
 	game->map = NULL;
+	game->mlx = NULL;
 }

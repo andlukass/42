@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:35:21 by user              #+#    #+#             */
-/*   Updated: 2023/08/13 16:48:12 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:59:15 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char	is_closed(t_avatar *avatar, char **map)
 
 	line = avatar->position.line;
 	x = avatar->position.x;
+	avatar->direction = '0';
 	result = '0';
 	if (left_closed(avatar, line, x, map) != '0')
 		result = left_closed(avatar, line, x, map);

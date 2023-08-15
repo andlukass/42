@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 21:06:42 by user              #+#    #+#             */
-/*   Updated: 2023/08/13 19:40:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:50:31 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2 || !get_map(&game, argv[1]))
 	{
 		write(1, "The game must receive one valid 'map'.ber\n", 43);
-		return (0);
+		free_all(&game);
 	}
 	game.frames = get_frames(game.map);
 	game.mlx = mlx_init();

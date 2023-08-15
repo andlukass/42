@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:41:56 by user              #+#    #+#             */
-/*   Updated: 2023/08/13 14:01:23 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:51:16 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	check_map(t_game *game)
 	if (!check_path(*game, game->player.body.x,
 			game->player.body.y))
 	{
-		write(1, "Map must have a valid path\n", 28);
+		write(1, "There is no valid path\n", 24);
 		return (ERROR);
 	}
 	return (OK);
