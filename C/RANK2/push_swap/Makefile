@@ -1,0 +1,29 @@
+GREEN := \033[32m
+RED := \033[31m
+END := \033[0m
+
+CFLAGS = -Wall -Wextra -Werror
+
+SRCS = main.c
+
+OBJS = $(SRC:.c=.o)
+
+NAME = push_swap
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	@rm -rf $(OBJ)
+	@echo "\n$(RED)> Cleaned! 🗑️\n$(END)"
+
+fclean:
+	@rm -rf $(NAME) $(OBJ)
+	@echo "\n$(RED)> All cleaned! 🗑️\n$(END)"
+
+re: clean all
