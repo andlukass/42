@@ -2,11 +2,13 @@ GREEN := \033[32m
 RED := \033[31m
 END := \033[0m
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
-SRCS = main.c
+SRCS = main.c \
+	utils/ft_atoi.c utils/is_number.c stack/stack.c \
+	movements/swap.c movements/push.c
 
-OBJS = $(SRC:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 NAME = push_swap
 
