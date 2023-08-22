@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:54:20 by user              #+#    #+#             */
-/*   Updated: 2023/08/22 09:10:11 by user             ###   ########.fr       */
+/*   Updated: 2023/08/22 16:23:57 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void pa(t_data *data)
 
 	if (data->stack_b)
 	{
+		write(1, "pa\n", 3);
 		value = data->stack_b->value;
 		new = new_stack_value(value);
 	}
@@ -35,6 +36,7 @@ void pb(t_data *data)
 
 	if (data->stack_a)
 	{
+		write(1, "pb\n", 3);
 		value = data->stack_a->value;
 		new = new_stack_value(value);
 	}

@@ -6,7 +6,8 @@ CFLAGS = #-Wall -Wextra -Werror
 
 SRCS = main.c \
 	utils/ft_atoi.c utils/is_number.c stack/stack.c \
-	movements/swap.c movements/push.c
+	movements/swap.c movements/push.c movements/rotate.c \
+	movements/reverse_rotate.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -21,11 +22,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJS)
 	@echo "\n$(RED)> Cleaned! 🗑️\n$(END)"
 
 fclean:
-	@rm -rf $(NAME) $(OBJ)
+	@rm -rf $(NAME) $(OBJS)
 	@echo "\n$(RED)> All cleaned! 🗑️\n$(END)"
 
 re: clean all

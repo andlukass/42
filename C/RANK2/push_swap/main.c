@@ -52,18 +52,8 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-int	main(int argc, char *argv[])
+void	print_stacks(t_data data)
 {
-	t_data data;
-
-	if (argc == 0)
-		return (0);
-	if (!init_stacks(&data, argc, argv))
-		return (write(1, "error\n", 6));
-	// pb(&data);
-	// pb(&data);
-	// pb(&data);
-	// pb(&data);
 	printf("----------------\n");
 	printf("stack a\n");
 	printf("stack len: %d\n",stack_len(data.stack_a));
@@ -72,4 +62,16 @@ int	main(int argc, char *argv[])
 	printf("stack b\n");
 	printf("stack len: %d\n",stack_len(data.stack_b));
 	print_stack(data.stack_b);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_data data;
+
+	if (argc == 0)
+		return (0);
+	if (!init_stacks(&data, argc, argv))
+		return (write(1, "error\n", 6));
+
+	print_stacks(data);
 }

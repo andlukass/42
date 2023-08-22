@@ -23,12 +23,21 @@ typedef struct s_data
 
 //-----------MOVEMENTS--------------
 //----SWAP
-void sa(t_data *data);
-void sb(t_data *data);
-void ss(t_data *data);
+void	sa(t_data *data);
+void	sb(t_data *data);
+void	ss(t_data *data);
 //----PUSH
-void pa(t_data *data);
-void pb(t_data *data);
+void	pa(t_data *data);
+void	pb(t_data *data);
+//----ROTATE
+void	ra(t_data *data);
+void	rb(t_data *data);
+void	rr(t_data *data);
+//----REVERSE_ROTATE
+void	rra(t_data *data);
+void	rrb(t_data *data);
+void	rrr(t_data *data);
+
 
 //-------------STACK----------------
 void	add_to_stack_first(t_stack **stack, t_stack *new);
