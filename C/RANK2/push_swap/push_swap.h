@@ -19,6 +19,8 @@ typedef struct s_data
 {
 	t_stack *stack_a;
 	t_stack *stack_b;
+	int		a_len;
+	int		b_len;
 } t_data;
 
 //-----------MOVEMENTS--------------
@@ -38,7 +40,6 @@ void	rra(t_data *data);
 void	rrb(t_data *data);
 void	rrr(t_data *data);
 
-
 //-------------STACK----------------
 void	add_to_stack_first(t_stack **stack, t_stack *new);
 void	add_to_stack_last(t_stack **stack, t_stack *new);
@@ -46,7 +47,15 @@ void	del_stack_first(t_stack **stack);
 t_stack	*new_stack_value(int value);
 int		stack_len(t_stack *stack);
 
+//-------------SORT-----------------
+void	sort_little(t_data *data);
+void	sort_large(t_data *data);
+void	sort_three(t_data *data);
+int	is_sorted(t_stack *stack);
+
 //-------------UTILS----------------
+char	*ft_strdup(char const *s1, int size);
+void	bubble_sort(int *array, int length);
 long int	ft_atoi(const char *str);
 int		is_number(char number);
 

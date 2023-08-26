@@ -3,45 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:54:20 by user              #+#    #+#             */
-/*   Updated: 2023/08/22 16:23:57 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:50:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void pa(t_data *data)
+void	push(t_stack **to_add, t_stack **to_rm, char *move)
 {
 	int	value;
 	t_stack	*new;
+	t_stack	*current;
 
-	if (data->stack_b)
+	current = *to_rm;
+	if (*to_rm)
 	{
-		write(1, "pa\n", 3);
-		value = data->stack_b->value;
+		write(1, move, 3);
+		value = current->value;
 		new = new_stack_value(value);
 	}
 	else
 		return;
-	del_stack_first(&data->stack_b);
-	add_to_stack_first(&data->stack_a, new);
+	del_stack_first(to_rm);
+	add_to_stack_first(to_add, new);
 }
 
-void pb(t_data *data)
+void	pa(t_data *data)
 {
-	int	value;
-	t_stack	*new;
+	push(&data->stack_a, &data->stack_b, "pa\n");
+	data->a_len = data->a_len + 1;
+	data->b_len = data->b_len - 1;
+}
 
-	if (data->stack_a)
-	{
-		write(1, "pb\n", 3);
-		value = data->stack_a->value;
-		new = new_stack_value(value);
-	}
-	else
-		return;
-	del_stack_first(&data->stack_a);
-	add_to_stack_first(&data->stack_b, new);
+void	pb(t_data *data)
+{
+	push(&data->stack_b, &data->stack_a, "pb\n");
+	data->a_len = data->a_len - 1;
+	data->b_len = data->b_len + 1;
 }
