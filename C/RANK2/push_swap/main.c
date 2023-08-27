@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:32:56 by user              #+#    #+#             */
-/*   Updated: 2023/08/26 09:10:36 by user             ###   ########.fr       */
+/*   Updated: 2023/08/26 21:51:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,27 +119,6 @@ int	init_stacks(t_data *data, int length, char *arguments[])
 	return (OK);
 }
 
-void	print_stack(t_stack *stack)
-{
-	while(stack)
-	{
-		printf("%d\n", stack->value);
-		stack = stack->next;
-	}
-}
-
-void	print_stacks(t_data data)
-{
-	printf("----------------\n");
-	printf("stack a\n");
-	printf("stack len: %d\n", data.a_len);
-	print_stack(data.stack_a);
-	printf("----------------\n");
-	printf("stack b\n");
-	printf("stack len: %d\n", data.b_len);
-	print_stack(data.stack_b);
-}
-
 int contarCaractere(const char *string, char caractere) {
 	int contador = 0;
 	const char *ptr = string;
@@ -241,18 +220,6 @@ char	**handle_args(int argc, char *argv[], int *length)
 	return (arguments);
 }
 
-void printteste(char **arguments, int length)
-{
-	int index = 0;
-
-	printf("len: %d\n", length);
-	while(index < length)
-	{
-		printf("arg: %s\n", arguments[index]);
-		index++;
-	}
-}
-
 int	main(int argc, char *argv[])
 {
 	t_data	data;
@@ -264,10 +231,11 @@ int	main(int argc, char *argv[])
 	arguments = handle_args(argc, argv, &length);
 	if (!init_stacks(&data, length, arguments))
 		return (write(1, "error\n", 6));
-	if(length <= 5)
+	if(length <= 25)
 		sort_little(&data);
 	else
 		sort_large(&data);
 	// free(arguments);
-	// print_stacks(data);
+	print_stacks(data);
+	// printf("teste: %d\n", ((10 >> 0) & 1));
 }

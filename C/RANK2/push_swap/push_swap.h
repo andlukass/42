@@ -46,12 +46,11 @@ void	add_to_stack_last(t_stack **stack, t_stack *new);
 void	del_stack_first(t_stack **stack);
 t_stack	*new_stack_value(int value);
 int		stack_len(t_stack *stack);
+void	print_stacks(t_data data);
 
 //-------------SORT-----------------
 void	sort_little(t_data *data);
 void	sort_large(t_data *data);
-void	sort_three(t_data *data);
-int	is_sorted(t_stack *stack);
 
 //-------------UTILS----------------
 char	*ft_strdup(char const *s1, int size);

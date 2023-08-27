@@ -9,8 +9,7 @@ SRCS = main.c \
 	movements/swap.c movements/push.c movements/rotate.c \
 	movements/reverse_rotate.c utils/bubble_sort.c \
 	sorting/sort_little.c  sorting/sort_large.c \
-	utils/ft_strdup.c sorting/is_sorted.c \
-	sorting/sort_three.c
+	utils/ft_strdup.c stack/print_stacks.c
 
 OBJS = $(SRCS:.c=.o)
 
