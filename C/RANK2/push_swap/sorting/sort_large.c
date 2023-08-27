@@ -3,70 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   sort_large.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 16:05:01 by user              #+#    #+#             */
-/*   Updated: 2023/08/27 09:32:35 by user             ###   ########.fr       */
+/*   Updated: 2023/08/27 16:36:21 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	have_bit_zero(t_stack *stack, int bit)
+static void	iterate_stack(t_data *data, int length, int bit, int is_stack_a)
 {
-	while(stack->next)
-	{
-		if((stack->value >> bit) & 0)
-			return (1);
-		stack = stack->next;
-	}
-	if((stack->value >> bit) & 0)
-			return (1);
-	return (0);
-}
-
-static int	have_bit_one(t_stack *stack, int bit)
-{
-	while(stack->next)
-	{
-		// if((stack->value >> bit) & 1)
-		// 	return (1); 
-		stack = stack->next;
-	}
-	if((stack->value >> bit) & 1)
-			return (1);
-	return (0);
-}
-
-static void	bitwise(t_data *data, int bit, int max_bit)
-{
-	int		index;
-	int		length;
-	int		teste;
 	t_stack	*current;
 
-	index = 0;
-	length = data->a_len;
-	current = data->stack_a;
-	while(index < length)
+	while (length-- > 0)
 	{
-		if ((current->value >> bit) & 1)
-			ra(data);
+		if (is_stack_a)
+		{
+			current = data->stack_a;
+			if ((current->value >> bit) & 1)
+				ra(data);
+			else
+				pb(data);
+		}
 		else
-			pb(data);
-		current = data->stack_a;
-		index++;
+		{
+			current = data->stack_b;
+			if (!((current->value >> bit) & 1))
+				rb(data);
+			else
+				pa(data);
+		}
 	}
+}
+
+static void	bitwise(t_data *data, int bit)
+{
+	iterate_stack(data, data->a_len, bit, 1);
 	bit++;
-	length = data->b_len;
-	while(length-- > 0)
-	{
-		if ((current->value >> bit) & 0)
-			rb(data);
-		else
-			pa(data);
-		current = data->stack_b;
-	}
+	iterate_stack(data, data->b_len, bit, 0);
 }
 
 void	sort_large(t_data *data)
@@ -78,19 +53,11 @@ void	sort_large(t_data *data)
 	max_bit = 1;
 	bit = 0;
 	length = data->a_len;
-	while((length / 2) > 0)
-	{
-		max_bit++;
+	while (((length / 2) > 0) && max_bit++)
 		length = length / 2;
-	}
-	while(bit < max_bit)
-	{
-		bitwise(data, bit,max_bit);
-		bit++;
-	}
-
+	while (bit < max_bit)
+		bitwise(data, bit++);
 	length = data->b_len;
-	while(length-- > 0)
+	while (length-- > 0)
 		pa(data);
 }
-

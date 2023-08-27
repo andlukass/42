@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:24:30 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/22 19:22:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:11:57 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	rotate(t_stack **stack)
 {
-	int	index;
-	int	length;
+	int		index;
+	int		length;
 	t_stack	*first;
 	t_stack	*current;
 
@@ -25,27 +25,27 @@ static void	rotate(t_stack **stack)
 	first = *stack;
 	current = *stack;
 	*stack = current->next;
-	while(current->next)
+	while (current->next)
 		current = current->next;
 	current->next = first;
 	first->next = NULL;
 }
 
-void ra(t_data *data)
+void	ra(t_data *data)
 {
-		write(1, "ra\n", 3);
-		rotate(&data->stack_a);
+	write(1, "ra\n", 3);
+	rotate(&data->stack_a);
 }
 
-void rb(t_data *data)
+void	rb(t_data *data)
 {
-		write(1, "rb\n", 3);
-		rotate(&data->stack_b);
+	write(1, "rb\n", 3);
+	rotate(&data->stack_b);
 }
 
-void rr(t_data *data)
+void	rr(t_data *data)
 {
-		write(1, "rr\n", 3);
-		rotate(&data->stack_a);
-		rotate(&data->stack_b);
+	write(1, "rr\n", 3);
+	rotate(&data->stack_a);
+	rotate(&data->stack_b);
 }

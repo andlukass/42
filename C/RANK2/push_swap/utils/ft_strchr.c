@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 21:08:43 by user              #+#    #+#             */
-/*   Updated: 2023/08/27 18:10:55 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/08/27 15:48:28 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strdup(char const *s1, int size)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*duplicate;
-	int		index;
-	int		length;
+	int	index;
 
 	index = 0;
-	length = 0;
-	duplicate = malloc(sizeof(char) * (size + 1));
-	if (!duplicate)
-		return (0);
-	while (index < size)
+	while (s[index])
 	{
-		duplicate[index] = s1[index];
+		if ((char)c == s[index])
+			return ((char *)(&s[index]));
 		index++;
 	}
-	duplicate[index] = '\0';
-	return (duplicate);
+	if ((char)c == s[index])
+		return ((char *)(&s[index]));
+	else
+		return (0);
 }

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   count_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 21:08:43 by user              #+#    #+#             */
-/*   Updated: 2023/08/27 18:10:55 by llopes-d         ###   ########.fr       */
+/*   Created: 2023/08/27 16:40:12 by llopes-d          #+#    #+#             */
+/*   Updated: 2023/08/27 17:48:39 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strdup(char const *s1, int size)
+int	count_char(char *str, char c)
 {
-	char	*duplicate;
-	int		index;
-	int		length;
+	int	counter;
+	int	index;
 
 	index = 0;
-	length = 0;
-	duplicate = malloc(sizeof(char) * (size + 1));
-	if (!duplicate)
-		return (0);
-	while (index < size)
+	counter = 0;
+	while (str[index])
 	{
-		duplicate[index] = s1[index];
+		if (str[index] == c)
+			counter++;
 		index++;
 	}
-	duplicate[index] = '\0';
-	return (duplicate);
+	return (counter);
 }

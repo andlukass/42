@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_little.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 17:51:49 by user              #+#    #+#             */
-/*   Updated: 2023/08/26 21:58:01 by user             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:11:18 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ static void	sort_four_more(t_data *data)
 	to_move = 0;
 	size = data->a_len;
 	values = malloc(sizeof(int) * size);
+	if (!values)
+		return ;
 	while (make_move(data, values, 0) && !is_sorted(data->stack_a))
 	{
-		if (values[0] - values[1] == 1 )
+		if (values[0] - values[1] == 1)
 			make_move(data, values, &sa);
 		if (values[0] == to_move && to_move++ > -1 && size-- > -1)
 			make_move(data, values, &pb);

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/21 18:10:57 by user             ###   ########.fr       */
+/*   Updated: 2023/08/27 17:46:32 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long int	ft_atoi(const char *str)
+long int	ft_atoi(char *str)
 {
 	long int	result;
-	int	negative;
-	int	i;
+	int			negative;
+	int			i;
 
 	result = 0;
 	i = 0;
@@ -35,10 +35,3 @@ long int	ft_atoi(const char *str)
 	}
 	return (result * negative);
 }
-
-/*int	main(void)
-{
-	printf("%d\n", ft_atoi("\r 14"));
-	// printf("%d\n", atoi("432423"));
-	//convert string in integer
-}*/

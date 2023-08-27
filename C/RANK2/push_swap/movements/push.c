@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:54:20 by user              #+#    #+#             */
-/*   Updated: 2023/08/24 15:50:55 by user             ###   ########.fr       */
+/*   Updated: 2023/08/27 15:12:55 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push(t_stack **to_add, t_stack **to_rm, char *move)
 {
-	int	value;
+	int		value;
 	t_stack	*new;
 	t_stack	*current;
 
@@ -26,7 +26,7 @@ void	push(t_stack **to_add, t_stack **to_rm, char *move)
 		new = new_stack_value(value);
 	}
 	else
-		return;
+		return ;
 	del_stack_first(to_rm);
 	add_to_stack_first(to_add, new);
 }
