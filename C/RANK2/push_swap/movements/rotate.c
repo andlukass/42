@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:24:30 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/27 15:11:57 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/09/03 14:18:03 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	rotate(t_stack **stack)
 {
-	int		index;
 	int		length;
 	t_stack	*first;
 	t_stack	*current;

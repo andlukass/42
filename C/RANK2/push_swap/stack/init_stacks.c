@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:58:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/29 14:41:37 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/09/03 14:26:16 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	is_unique(int *array, int length)
 static int	valid_number(char *arg)
 {
 	int			index;
-	long int	value;
 
 	index = -1;
 	while (arg[++index])
@@ -81,9 +80,8 @@ static void	get_indexes(int *array, int length)
 
 static int	atolarize(int *array, int length, char *arguments[])
 {
-	int	index;
-	int	value;
-	int	size;
+	int			index;
+	long int	value;
 
 	index = 0;
 	while (index < length)
@@ -105,7 +103,6 @@ int	init_stacks(t_data *data, int length, char *arguments[])
 {
 	int			index;
 	int			*array;
-	long int	value;
 
 	index = 0;
 	data->stack_a = NULL;

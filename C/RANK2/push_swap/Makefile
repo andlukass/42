@@ -2,7 +2,7 @@ GREEN := \033[32m
 RED := \033[31m
 END := \033[0m
 
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
 	utils/ft_atoi.c utils/is_number.c stack/stack.c \
@@ -22,6 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "\n$(GREEN)> Compilation done!🎉\n$(END)"
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

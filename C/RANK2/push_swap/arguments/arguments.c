@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:52:42 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/29 14:38:12 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/09/03 14:18:37 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	**handle_args(int argc, char *argv[], int *length)
 void	free_arguments(char **arguments)
 {
 	int	index;
-	int	j;
 
 	index = 0;
 	while (arguments[index])
