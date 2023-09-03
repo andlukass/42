@@ -6,13 +6,12 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:32:56 by user              #+#    #+#             */
-/*   Updated: 2023/08/27 18:07:36 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:21:05 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 // print_stacks(data);
-
 int	main(int argc, char *argv[])
 {
 	t_data	data;

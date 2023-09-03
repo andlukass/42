@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:58:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/27 18:11:39 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:41:37 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ static int	valid_number(char *arg)
 		}
 	}
 	if (index > 11)
-		return (ERROR);
-	value = ft_atoi(arg);
-	if (value > 2147483647 || value < -2147483648)
 		return (ERROR);
 	return (OK);
 }
@@ -94,6 +91,8 @@ static int	atolarize(int *array, int length, char *arguments[])
 		if (!valid_number(arguments[index]))
 			return (ERROR);
 		value = ft_atoi(arguments[index]);
+		if (value > 2147483647 || value < -2147483648)
+			return (ERROR);
 		array[index] = value;
 		index++;
 	}

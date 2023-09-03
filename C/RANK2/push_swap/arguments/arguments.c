@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:52:42 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/08/27 18:09:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:38:12 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,9 @@ static void	get_args(int argc, char *argv[], char *arguments[])
 	j = 0;
 	while (index < argc)
 	{
-		if (get_sub_args(arguments, argv, &index, &j))
-			index++;
-		if (index >= argc)
-			break ;
-		arguments[j] = ft_strdup(argv[index], strlen(argv[index]));
-		j++;
+		k = get_sub_args(arguments, argv, &index, &j);
+		if (!k)
+			arguments[j++] = ft_strdup(argv[index], strlen(argv[index]));
 		index++;
 	}
 	arguments[j] = NULL;
