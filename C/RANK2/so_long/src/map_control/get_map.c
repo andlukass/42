@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:02 by user              #+#    #+#             */
-/*   Updated: 2023/09/19 14:31:52 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:42:49 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	get_map(t_game *game, char *map_name)
 		game->map = ft_strjoin(game->map, line);
 		free(line);
 	}
+	if (!game->map)
+		return(ERROR);
 	game->map_splited = ft_split(game->map, '\n');
 	get_map_size(game);
 	return (check_map(game));
