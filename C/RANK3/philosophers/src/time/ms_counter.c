@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:26:12 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/09/24 18:28:07 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:37:52 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ms_counter(void *total_milliseconds)
 	{
 		get_time(&current_time);
 		*((long long int *)total_milliseconds) = (current_time.tv_sec * 1000 + current_time.tv_usec / 1000) - init_time;
-		printf("Total Milliseconds since init: %lld\n", *((long long int *)total_milliseconds));
+		// printf("Total Milliseconds since init: %lld\n", *((long long int *)total_milliseconds));
 		usleep(1000);
 	}
 	return ((void *)0);

@@ -19,9 +19,17 @@ typedef struct s_args
 
 typedef struct s_philosopher
 {
+	pthread_t	philo_t;
 	int	last_time_eat;
-
+	t_args	args;
 }	t_philosopher;
+
+typedef struct s_data
+{
+	long long int	total_milliseconds;
+	t_philosopher	*philo;
+	int	*fork;
+}	t_data;
 
 int	ft_atoi(const char *str);
 

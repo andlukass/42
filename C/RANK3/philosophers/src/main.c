@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:07:23 by user              #+#    #+#             */
-/*   Updated: 2023/09/24 18:34:41 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:00:28 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int *init_forks(int number_of_philosophers)
 	int	*fork;
 
 	fork = (int *)malloc(sizeof(int) * number_of_philosophers);
+	if (!fork)
+		exit(0);
 	index = 0;
 	while (index < number_of_philosophers)
 	{
@@ -55,37 +57,52 @@ int *init_forks(int number_of_philosophers)
 	return (fork);
 }
 
-t_philosopher *init_philos(t_args args)
+t_philosopher *init_philos(int argc, char *argv[])
 {
+	int		index;
+	int		number_of_philosophers;
 	t_philosopher	*philo;
 
-	philo = (t_philosopher *)malloc(sizeof(t_philosopher) * args.number_of_philosophers);
+	number_of_philosophers = ft_atoi(argv[1]);
+	index = 0;
+	philo = (t_philosopher *)malloc(sizeof(t_philosopher) * number_of_philosophers);
+	if (!philo)
+		exit(0);
+	while (index < number_of_philosophers)
+	{
+		philo[index].last_time_eat = 0;
+		philo[index].args = get_args(argc, argv);
+		index++;
+	}
 	return (philo);
+}
+
+void *teste(void *total_milliseconds)
+{
+	while(1)
+		printf("vai da o cu\n");
+	return (void *)0;
 }
 
 int main(int argc, char *argv[])
 {
+	t_data	data;
 	pthread_t ms_counter_t;
-	long long int	total_milliseconds;
-	t_philosopher	*philo;
-	t_args	args;
-	int	*fork;
 
 	if ((argc != 5 && argc != 6) || is_arguments_empty(argc, argv))
 		return (0);
-	
-	args = get_args(argc, argv);
-	philo = init_philos(args);
-	fork = init_forks(args.number_of_philosophers);
 
-	pthread_create(&ms_counter_t, NULL, ms_counter, &total_milliseconds);
+	data.philo = init_philos(argc, argv);
+	data.fork = init_forks(data.philo[0].args.number_of_philosophers);
 
-
+	pthread_create(&ms_counter_t, NULL, ms_counter, &data.total_milliseconds);
+	pthread_create(&data.philo[0].philo_t, NULL, teste, &data);
 
 
 
+	pthread_join(data.philo[0].philo_t, NULL);
 	pthread_join(ms_counter_t, NULL);
-	free(fork);
-	free(philo);
+	free(data.fork);
+	free(data.philo);
 	return (0);
 }
