@@ -19,16 +19,24 @@ typedef struct s_args
 
 typedef struct s_philosopher
 {
+	int	id;
 	pthread_t	philo_t;
 	int	last_time_eat;
+	int	number_of_forks;
 	t_args	args;
 }	t_philosopher;
+
+typedef struct s_fork
+{
+	int	is_on_table;
+}	t_fork;
 
 typedef struct s_data
 {
 	long long int	total_milliseconds;
+	int	philo_initiated;
 	t_philosopher	*philo;
-	int	*fork;
+	t_fork	*fork;
 }	t_data;
 
 int	ft_atoi(const char *str);

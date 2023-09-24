@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:07:23 by user              #+#    #+#             */
-/*   Updated: 2023/09/24 19:00:28 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:06:08 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ t_args	get_args(int argc, char *argv[])
 	return (args);
 }
 
-int *init_forks(int number_of_philosophers)
+t_fork *init_forks(int number_of_philosophers)
 {
 	int	index;
-	int	*fork;
+	t_fork	*fork;
 
-	fork = (int *)malloc(sizeof(int) * number_of_philosophers);
+	fork = (t_fork *)malloc(sizeof(t_fork) * number_of_philosophers);
 	if (!fork)
 		exit(0);
 	index = 0;
 	while (index < number_of_philosophers)
 	{
-		fork[index] = index + 1;
+		fork[index].is_on_table = 1;
 		index++;
 	}
 	return (fork);
@@ -70,17 +70,46 @@ t_philosopher *init_philos(int argc, char *argv[])
 		exit(0);
 	while (index < number_of_philosophers)
 	{
+		philo[index].id = index + 1;
 		philo[index].last_time_eat = 0;
+		philo[index].number_of_forks = 0;
 		philo[index].args = get_args(argc, argv);
 		index++;
 	}
 	return (philo);
 }
 
-void *teste(void *total_milliseconds)
+void *teste(void *data)
 {
-	while(1)
-		printf("vai da o cu\n");
+	int	index;
+	int	philo_id;
+	t_philosopher philo;
+
+	philo_id = ((t_data *)data)->philo_initiated;
+	philo = ((t_data *)data)->philo[philo_id];
+	while (1)
+	{
+		if (philo.number_of_forks < 1)
+		{
+			usleep(1000);
+			if (((t_data *)data)->fork[philo_id].is_on_table)
+			{	
+				printf("%lld %d has taken a fork\n",
+				((t_data *)data)->total_milliseconds, philo_id + 1);
+				philo.number_of_forks++;
+			}
+		}
+		if (philo.number_of_forks == 1)
+		{
+			usleep(1000);
+			if (((t_data *)data)->fork[philo_id + 1].is_on_table)
+			{	
+				printf("%lld %d has taken a fork\n",
+				((t_data *)data)->total_milliseconds, philo_id + 1);
+				philo.number_of_forks++;
+			}
+		}
+	}
 	return (void *)0;
 }
 
@@ -92,6 +121,7 @@ int main(int argc, char *argv[])
 	if ((argc != 5 && argc != 6) || is_arguments_empty(argc, argv))
 		return (0);
 
+	data.philo_initiated = 0;
 	data.philo = init_philos(argc, argv);
 	data.fork = init_forks(data.philo[0].args.number_of_philosophers);
 
