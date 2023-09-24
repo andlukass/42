@@ -3,9 +3,9 @@ RED := \033[31m
 END := \033[0m
 
 RM = rm -f
-CFLAGS = # -Wall -Wextra -Werror
+CFLAGS = -pthread # -Wall -Wextra -Werror
 
-SRCS = main.c utils/ft_atoi.c
+SRCS = src/main.c src/utils/ft_atoi.c src/time/ms_counter.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME = philosophers
