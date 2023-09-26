@@ -3,9 +3,11 @@ RED := \033[31m
 END := \033[0m
 
 RM = rm -f
-CFLAGS = -pthread # -Wall -Wextra -Werror
+CFLAGS = -pthread -fsanitize=threads # -Wall -Wextra -Werror
 
-SRCS = src/main.c src/utils/ft_atoi.c src/time/ms_counter.c
+SRCS = src/main.c src/utils/ft_atoi.c src/time/ms_counter.c \
+		src/actions/actions.c
+
 OBJS = $(SRCS:%.c=%.o)
 
 NAME = philosophers
