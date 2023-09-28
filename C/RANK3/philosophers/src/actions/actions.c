@@ -6,13 +6,13 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:10:37 by user              #+#    #+#             */
-/*   Updated: 2023/09/28 18:53:37 by user             ###   ########.fr       */
+/*   Updated: 2023/09/28 21:05:02 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	is_dead(t_philosopher *philo, long long total_ms)
+void	is_dead(t_philosopher *philo, long total_ms)
 {
 	int	time_no_eat;
 	int	last_time_eat;
@@ -29,7 +29,7 @@ void	is_dead(t_philosopher *philo, long long total_ms)
 	}
 }
 
-int	wake_up(t_philosopher *philo, long long total_ms)
+int	wake_up(t_philosopher *philo, long total_ms)
 {
 	int	is_wake_up;
 	int	time_spent_sleeping;

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:34:58 by user              #+#    #+#             */
-/*   Updated: 2023/09/28 18:54:51 by user             ###   ########.fr       */
+/*   Updated: 2023/09/28 21:05:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ t_philosopher	*init_philos(int argc, char *argv[]);
 // /*-------------ACTIONS---------------*/
 void			get_fork(t_philosopher *philo, t_fork **forks, long total_ms);
 void			get_sleep(t_philosopher *philo, t_fork **forks, long total_ms);
-void			is_dead(t_philosopher *philo, long long total_ms);
-int				wake_up(t_philosopher *philo, long long total_ms);
+void			is_dead(t_philosopher *philo, long total_ms);
+int				wake_up(t_philosopher *philo, long total_ms);
 void			*manage_actions(void *args);
 
 #endif
