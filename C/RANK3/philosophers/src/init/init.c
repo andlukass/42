@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:42:17 by user              #+#    #+#             */
-/*   Updated: 2023/09/28 17:45:40 by user             ###   ########.fr       */
+/*   Updated: 2023/09/28 18:55:02 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,26 @@ int	is_arguments_empty(int argc, char *argv[])
 	return (0);
 }
 
+int	init_variables(t_data *data, int argc, char *argv[])
+{
+	int	number_of_philosophers;
+
+	data->philo_initiated = 0;
+	data->someone_died = 0;
+	data->total_milliseconds = 0;
+	data->philo = init_philos(argc, argv);
+	if (!data->philo)
+		return (0);
+	number_of_philosophers = data->philo[0].args.number_of_philosophers;
+	data->forks = init_forks(number_of_philosophers);
+	if (!data->forks)
+		return (0);
+	return (number_of_philosophers);
+}
+
 t_args	get_args(int argc, char *argv[])
 {
-	t_args args;
+	t_args	args;
 
 	args.number_of_philosophers = ft_atoi(argv[1]);
 	args.time_to_die = ft_atoi(argv[2]);
@@ -40,14 +57,14 @@ t_args	get_args(int argc, char *argv[])
 	return (args);
 }
 
-t_fork *init_forks(int number_of_philosophers)
+t_fork	*init_forks(int number_of_philosophers)
 {
-	int	index;
+	int		index;
 	t_fork	*fork;
 
 	fork = (t_fork *)malloc(sizeof(t_fork) * number_of_philosophers);
 	if (!fork)
-		exit(0);
+		return (NULL);
 	index = 0;
 	while (index < number_of_philosophers)
 	{
@@ -58,17 +75,18 @@ t_fork *init_forks(int number_of_philosophers)
 	return (fork);
 }
 
-t_philosopher *init_philos(int argc, char *argv[])
+t_philosopher	*init_philos(int argc, char *argv[])
 {
-	int		index;
-	int		number_of_philosophers;
+	int				index;
+	int				number_of_philosophers;
 	t_philosopher	*philo;
 
 	number_of_philosophers = ft_atoi(argv[1]);
 	index = 0;
-	philo = (t_philosopher *)malloc(sizeof(t_philosopher) * number_of_philosophers);
+	philo = (t_philosopher *)malloc(sizeof(t_philosopher) \
+									* number_of_philosophers);
 	if (!philo)
-		exit(0);
+		return (NULL);
 	while (index < number_of_philosophers)
 	{
 		philo[index].id = index + 1;

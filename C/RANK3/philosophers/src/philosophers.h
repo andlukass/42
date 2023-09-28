@@ -1,5 +1,17 @@
-#ifndef PHILOSOFERS_H
-# define PHILOSOFERS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/28 18:34:58 by user              #+#    #+#             */
+/*   Updated: 2023/09/28 18:54:51 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -19,14 +31,14 @@ typedef struct s_args
 
 typedef struct s_philosopher
 {
-	int	id;
 	pthread_t	philo_t;
-	int	last_time_get_fork;
-	int	last_time_went_sleep;
-	int	is_sleeping;
-	int	is_dead;
-	int	number_of_forks;
-	t_args	args;
+	t_args		args;
+	int			id;
+	int			last_time_get_fork;
+	int			last_time_went_sleep;
+	int			is_sleeping;
+	int			is_dead;
+	int			number_of_forks;
 }	t_philosopher;
 
 typedef struct s_fork
@@ -37,32 +49,33 @@ typedef struct s_fork
 
 typedef struct s_data
 {
-	long long int	total_milliseconds;
-	pthread_t	ms_counter_t;
+	pthread_t		ms_counter_t;
 	pthread_mutex_t	mutex;
-	int	someone_died;
-	int	philo_initiated;
 	t_philosopher	*philo;
-	t_fork	*forks;
+	t_fork			*forks;
+	long long int	total_milliseconds;
+	int				someone_died;
+	int				philo_initiated;
 }	t_data;
 
 /*-------------UTILS----------------*/
-int	ft_atoi(const char *str);
+int				ft_atoi(const char *str);
 
 /*--------------TIME----------------*/
-void	*ms_counter(void *total_milliseconds);
+void			*ms_counter(void *total_milliseconds);
 
-/*---------------INIT----------------*/
-int	is_arguments_empty(int argc, char *argv[]);
-t_args	get_args(int argc, char *argv[]);
-t_fork *init_forks(int number_of_philosophers);
-t_philosopher *init_philos(int argc, char *argv[]);
+// /*---------------INIT----------------*/
+int				init_variables(t_data *data, int argc, char *argv[]);
+int				is_arguments_empty(int argc, char *argv[]);
+t_args			get_args(int argc, char *argv[]);
+t_fork			*init_forks(int number_of_philosophers);
+t_philosopher	*init_philos(int argc, char *argv[]);
 
-/*-------------ACTIONS---------------*/
-void	get_fork(t_philosopher *philo, t_fork **forks, long long total_ms);
-void	get_sleep(t_philosopher *philo, t_fork **forks, long long total_ms);
-void	is_dead(t_philosopher *philo, long long total_ms);
-int		wake_up(t_philosopher *philo, long long total_ms);
-void	*manage_actions(void *args);
+// /*-------------ACTIONS---------------*/
+void			get_fork(t_philosopher *philo, t_fork **forks, long total_ms);
+void			get_sleep(t_philosopher *philo, t_fork **forks, long total_ms);
+void			is_dead(t_philosopher *philo, long long total_ms);
+int				wake_up(t_philosopher *philo, long long total_ms);
+void			*manage_actions(void *args);
 
 #endif
