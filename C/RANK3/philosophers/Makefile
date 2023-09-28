@@ -3,10 +3,10 @@ RED := \033[31m
 END := \033[0m
 
 RM = rm -f
-CFLAGS = -pthread -fsanitize=threads # -Wall -Wextra -Werror
+CFLAGS = -pthread -fsanitize=thread -g# -Wall -Wextra -Werror
 
 SRCS = src/main.c src/utils/ft_atoi.c src/time/ms_counter.c \
-		src/actions/actions.c
+		src/actions/actions.c src/init/init.c src/actions/manage_actions.c
 
 OBJS = $(SRCS:%.c=%.o)
 

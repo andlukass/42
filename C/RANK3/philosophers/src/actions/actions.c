@@ -6,23 +6,36 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:10:37 by user              #+#    #+#             */
-/*   Updated: 2023/09/26 14:10:58 by user             ###   ########.fr       */
+/*   Updated: 2023/09/28 17:22:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
+
+int ver_philosopho = 2;
 
 void	is_dead(t_philosopher *philo, long long total_ms)
 {
 	int	time_no_eat;
 	int	last_time_eat;
 
-	last_time_eat = philo->last_time_get_fork + philo->args.time_to_eat;
+	if (philo->last_time_get_fork <= 0)
+		last_time_eat = 0;
+	else
+		last_time_eat = philo->last_time_get_fork + philo->args.time_to_eat;
 	time_no_eat = total_ms - last_time_eat;
+	// if (time_no_eat < 0)//esta comendo
+	// else if (time_no_eat > 0)//ja comeu
+	// // if (philo->id == ver_philosopho)
+	// {
+	// 	// if (total_ms % 10 == 0)
+	// 	// 	printf("timenoeat%d lastimefork%d \n", time_no_eat, philo->last_time_get_fork);
+	// }
 	if (time_no_eat >= philo->args.time_to_die)
 	{
-		printf("%lld %d died\n", total_ms, philo->id);
-		exit(0);
+		// if (philo->id == ver_philosopho)
+			printf("%lld %d died\n", total_ms, philo->id);
+		philo->is_dead = 1;
 	}
 }
 
@@ -41,7 +54,8 @@ int	wake_up(t_philosopher *philo, long long total_ms)
 	{
 		philo->is_sleeping = 0;
 		is_wake_up = 1;
-		printf("%lld %d is thinking\n", total_ms, philo->id);
+		// if (philo->id == ver_philosopho)
+			printf("%lld %d is thinking\n", total_ms, philo->id);
 	}
 	else
 		is_wake_up = 0;
@@ -65,14 +79,14 @@ void	get_sleep(t_philosopher *philo, t_fork **forks, long long total_ms)
 		time_eating = 0;
 	if (time_eating >= philo->args.time_to_eat)
 	{
-		printf("%lld %d is sleeping\n", total_ms, philo->id);
+		// if (philo->id == ver_philosopho)
+			printf("%lld %d is sleeping\n", total_ms, philo->id);
 		deref_forks[philo->id - 1].is_on_table = 1;
 		deref_forks[next_fork].is_on_table = 1;
 		philo->number_of_forks = 0;
 		philo->is_sleeping = 1;
 		philo->last_time_went_sleep = total_ms;
 	}
-	// printf("last time ger a fork: %d\n", philo->last_time_get_fork);
 }
 
 void	get_fork(t_philosopher *philo, t_fork **forks, long long total_ms)
@@ -85,22 +99,21 @@ void	get_fork(t_philosopher *philo, t_fork **forks, long long total_ms)
 		next_fork = 0;
 	else
 		next_fork = philo->id;
-	// if (philo->id == 1)
-	// 	return;
 	if (philo->number_of_forks < 1 && deref_forks[philo->id - 1].is_on_table)
 	{
-		printf("%lld %d has taken 1º a fork", total_ms, philo->id);
-		printf(": %d\n", deref_forks[philo->id - 1].id);
-		philo->last_time_get_fork = total_ms;
+		// if (philo->id == ver_philosopho)
+			printf("%lld %d has taken 1º a fork: %d\n", total_ms, philo->id, deref_forks[philo->id - 1].id);
 		deref_forks[philo->id - 1].is_on_table = 0;
 		philo->number_of_forks++;
 	}
 	if (philo->number_of_forks == 1 && deref_forks[next_fork].is_on_table)
 	{
-		printf("%lld %d has taken 2º a fork", total_ms, philo->id);
-		printf(": %d\n", deref_forks[next_fork].id);
+		// if (philo->id == ver_philosopho)
+			printf("%lld %d has taken 2º a fork: %d\n", total_ms, philo->id, deref_forks[next_fork].id);
 		philo->last_time_get_fork = total_ms;
 		deref_forks[next_fork].is_on_table = 0;
 		philo->number_of_forks++;
+		// if (philo->id == ver_philosopho)
+			printf("%lld %d is eating\n", total_ms, philo->id);
 	}
 }

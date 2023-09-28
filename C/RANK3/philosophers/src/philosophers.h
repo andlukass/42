@@ -24,6 +24,7 @@ typedef struct s_philosopher
 	int	last_time_get_fork;
 	int	last_time_went_sleep;
 	int	is_sleeping;
+	int	is_dead;
 	int	number_of_forks;
 	t_args	args;
 }	t_philosopher;
@@ -37,18 +38,31 @@ typedef struct s_fork
 typedef struct s_data
 {
 	long long int	total_milliseconds;
+	pthread_t	ms_counter_t;
+	pthread_mutex_t	mutex;
+	int	someone_died;
 	int	philo_initiated;
 	t_philosopher	*philo;
 	t_fork	*forks;
 }	t_data;
 
+/*-------------UTILS----------------*/
 int	ft_atoi(const char *str);
 
+/*--------------TIME----------------*/
 void	*ms_counter(void *total_milliseconds);
 
+/*---------------INIT----------------*/
+int	is_arguments_empty(int argc, char *argv[]);
+t_args	get_args(int argc, char *argv[]);
+t_fork *init_forks(int number_of_philosophers);
+t_philosopher *init_philos(int argc, char *argv[]);
+
+/*-------------ACTIONS---------------*/
 void	get_fork(t_philosopher *philo, t_fork **forks, long long total_ms);
 void	get_sleep(t_philosopher *philo, t_fork **forks, long long total_ms);
 void	is_dead(t_philosopher *philo, long long total_ms);
 int		wake_up(t_philosopher *philo, long long total_ms);
+void	*manage_actions(void *args);
 
 #endif

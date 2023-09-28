@@ -6,31 +6,40 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:26:12 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/09/26 14:10:45 by user             ###   ########.fr       */
+/*   Updated: 2023/09/28 18:00:49 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-static void	get_time(struct timeval *currentTime)
+static long int get_time()
 {
-	if (gettimeofday(currentTime, NULL))
-		exit(0);
+	struct timeval	time;
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	*ms_counter(void *total_milliseconds)
+void	*ms_counter(void *args)
 {
-	struct timeval	current_time;
-	long	init_time;
+	long int	current_time;
+	long int	init_time;
+	int	someone_died;
+	t_data	**data;
 
-	get_time(&current_time);
-	init_time = (current_time.tv_sec * 1000);
+	data = (t_data **)&args;
+	init_time = get_time();
 	while (1)
 	{
-		get_time(&current_time);
-		*((long long int *)total_milliseconds) = (current_time.tv_sec * 1000 + current_time.tv_usec / 1000) - init_time;
-		// printf("Total Milliseconds since init: %lld\n", *((long long int *)total_milliseconds));
-		usleep(1000);
+		current_time = get_time();
+		pthread_mutex_lock(&(*(data))->mutex);
+		(*(data))->total_milliseconds = current_time - init_time;
+		pthread_mutex_unlock(&(*(data))->mutex);
+		pthread_mutex_lock(&(*(data))->mutex);
+		someone_died = (*(data))->someone_died;
+		pthread_mutex_unlock(&(*(data))->mutex);
+		if (someone_died)
+			break;
+		// printf("Total Milliseconds since init: %lld\n", (*(data))->total_milliseconds);
 	}
 	return ((void *)0);
 }
