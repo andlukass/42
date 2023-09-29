@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:34:58 by user              #+#    #+#             */
-/*   Updated: 2023/09/28 21:05:11 by user             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:07:43 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_philosopher
 	pthread_t	philo_t;
 	t_args		args;
 	int			id;
+	int			number_of_meals;
 	int			last_time_get_fork;
 	int			last_time_went_sleep;
 	int			is_sleeping;
@@ -53,23 +54,27 @@ typedef struct s_data
 	pthread_mutex_t	mutex;
 	t_philosopher	*philo;
 	t_fork			*forks;
-	long long int	total_milliseconds;
+	long int		total_milliseconds;
 	int				someone_died;
+	int				already_satisfied;
 	int				philo_initiated;
+	t_args			args;
 }	t_data;
 
 /*-------------UTILS----------------*/
-int				ft_atoi(const char *str);
-
-/*--------------TIME----------------*/
-void			*ms_counter(void *total_milliseconds);
+int				number_len_no_zero(char *str);
+int				is_positive_number(char *str);
+long int		ft_atoi(const char *str);
 
 // /*---------------INIT----------------*/
 int				init_variables(t_data *data, int argc, char *argv[]);
-int				is_arguments_empty(int argc, char *argv[]);
+int				is_arguments_invalid(int argc, char *argv[]);
 t_args			get_args(int argc, char *argv[]);
 t_fork			*init_forks(int number_of_philosophers);
 t_philosopher	*init_philos(int argc, char *argv[]);
+
+/*--------------TIME----------------*/
+void			*ms_counter(void *total_milliseconds);
 
 // /*-------------ACTIONS---------------*/
 void			get_fork(t_philosopher *philo, t_fork **forks, long total_ms);

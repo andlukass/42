@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:07:23 by user              #+#    #+#             */
-/*   Updated: 2023/09/28 18:56:06 by user             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:03:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	main(int argc, char *argv[])
 {
-	t_data	data;
-	int		i;
 	int		number_of_philosophers;
+	int		i;
+	t_data	data;
 
-	if ((argc != 5 && argc != 6) || is_arguments_empty(argc, argv))
+	if ((argc != 5 && argc != 6) || is_arguments_invalid(argc, argv))
 		return (0);
 	i = 0;
 	number_of_philosophers = init_variables(&data, argc, argv);

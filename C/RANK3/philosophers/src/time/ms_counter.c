@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:26:12 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/09/28 19:03:25 by user             ###   ########.fr       */
+/*   Updated: 2023/09/29 16:08:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,23 @@ static long int	get_time(void)
 
 void	*ms_counter(void *args)
 {
-	long int	current_time;
-	long int	init_time;
+	long		number_of_philosophers;
+	int			already_satisfied;
 	int			someone_died;
+	long		init_time;
 	t_data		*data;
 
 	data = (t_data *)args;
 	init_time = get_time();
+	number_of_philosophers = data->args.number_of_philosophers;
 	while (1)
 	{
-		current_time = get_time();
 		pthread_mutex_lock(&data->mutex);
-		data->total_milliseconds = current_time - init_time;
-		pthread_mutex_unlock(&data->mutex);
-		pthread_mutex_lock(&data->mutex);
+		already_satisfied = data->already_satisfied;
+		data->total_milliseconds = get_time() - init_time;
 		someone_died = data->someone_died;
 		pthread_mutex_unlock(&data->mutex);
-		if (someone_died)
+		if (someone_died || already_satisfied == number_of_philosophers)
 			break ;
 	}
 	return ((void *)0);

@@ -6,15 +6,15 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:06:24 by user              #+#    #+#             */
-/*   Updated: 2023/09/28 18:42:07 by user             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:04:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	int	result;
-	int	negative;
-	int	i;
+	long	result;
+	int		negative;
+	int		i;
 
 	result = 0;
 	i = 0;
