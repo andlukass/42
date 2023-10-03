@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:42:17 by user              #+#    #+#             */
-/*   Updated: 2023/09/29 17:04:19 by user             ###   ########.fr       */
+/*   Updated: 2023/10/03 20:07:55 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,6 @@ t_args	get_args(int argc, char *argv[])
 	args.time_to_die = ft_atoi(argv[2]);
 	args.time_to_eat = ft_atoi(argv[3]);
 	args.time_to_sleep = ft_atoi(argv[4]);
-	if (argc == 6)
-	{
-		args.number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
-		args.has_last_argument++;
-	}
-	else
-	{
-		args.number_of_times_each_philosopher_must_eat = 0;
-		args.has_last_argument = 0;
-	}
 	return (args);
 }
 

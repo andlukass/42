@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_actions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:47:00 by user              #+#    #+#             */
-/*   Updated: 2023/09/29 16:21:55 by user             ###   ########.fr       */
+/*   Updated: 2023/10/01 19:32:36 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	*manage_actions(void *args)
 
 	data = (t_data *)args;
 	philo = get_philo(data);
+	if (philo->id != 1)
+		printf("0 %d is thinking\n", philo->id);
+	usleep(1000);
 	while (1)
 	{
 		total_milliseconds = get_total_ms(data);

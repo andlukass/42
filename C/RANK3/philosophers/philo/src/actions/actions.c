@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:10:37 by user              #+#    #+#             */
-/*   Updated: 2023/09/29 12:53:33 by user             ###   ########.fr       */
+/*   Updated: 2023/10/03 16:31:21 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,8 @@
 void	is_dead(t_philosopher *philo, long total_ms)
 {
 	int	time_no_eat;
-	int	last_time_eat;
 
-	if (philo->last_time_get_fork <= 0)
-		last_time_eat = 0;
-	else
-		last_time_eat = philo->last_time_get_fork + philo->args.time_to_eat;
-	time_no_eat = total_ms - last_time_eat;
+	time_no_eat = total_ms - philo->last_time_get_fork;
 	if (time_no_eat >= philo->args.time_to_die)
 	{
 		printf("%ld %d died\n", total_ms, philo->id);
