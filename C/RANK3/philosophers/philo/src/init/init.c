@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:42:17 by user              #+#    #+#             */
-/*   Updated: 2023/10/03 20:07:55 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/10/05 13:56:46 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_args	get_args(int argc, char *argv[])
 	args.time_to_die = ft_atoi(argv[2]);
 	args.time_to_eat = ft_atoi(argv[3]);
 	args.time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		args.number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	return (args);
 }
 
