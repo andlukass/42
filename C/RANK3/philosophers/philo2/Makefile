@@ -12,7 +12,7 @@ SRCS = src/main.c src/utils/ft_atoi.c src/utils/is_positive_number.c \
 
 OBJS = $(SRCS:%.c=%.o)
 
-NAME = philosophers
+NAME = philo
 
 all:	$(NAME)
 

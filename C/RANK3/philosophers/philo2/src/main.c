@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:07:23 by user              #+#    #+#             */
-/*   Updated: 2023/09/29 17:03:11 by user             ###   ########.fr       */
+/*   Updated: 2023/10/03 20:07:46 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	if ((argc != 5 && argc != 6) || is_arguments_invalid(argc, argv))
-		return (0);
+		return (printf("Error\n"));
 	i = 0;
 	number_of_philosophers = init_variables(&data, argc, argv);
 	if (!data.philo || !data.forks || !number_of_philosophers)
+		return (printf("Error\n"));
+	if (data.philo[0].args.number_of_times_each_philosopher_must_eat == 0 \
+		&& argc == 6)
 		return (0);
 	pthread_mutex_init(&data.mutex, NULL);
 	pthread_create(&data.ms_counter_t, NULL, ms_counter, &data);

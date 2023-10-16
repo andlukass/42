@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:10:37 by user              #+#    #+#             */
-/*   Updated: 2023/09/29 12:53:33 by user             ###   ########.fr       */
+/*   Updated: 2023/10/05 16:05:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,11 @@
 void	is_dead(t_philosopher *philo, long total_ms)
 {
 	int	time_no_eat;
-	int	last_time_eat;
 
-	if (philo->last_time_get_fork <= 0)
-		last_time_eat = 0;
-	else
-		last_time_eat = philo->last_time_get_fork + philo->args.time_to_eat;
-	time_no_eat = total_ms - last_time_eat;
+	time_no_eat = total_ms - philo->last_time_get_fork;
 	if (time_no_eat >= philo->args.time_to_die)
 	{
+		usleep(1000);
 		printf("%ld %d died\n", total_ms, philo->id);
 		philo->is_dead = 1;
 	}
@@ -89,15 +85,15 @@ void	get_fork(t_philosopher *philo, t_fork **forks, long total_ms)
 		next_fork = philo->id;
 	if (philo->number_of_forks < 1 && deref_forks[philo->id - 1].is_on_table)
 	{
-		printf("%ld %d has taken 1º a fork: %d\n", \
-						total_ms, philo->id, deref_forks[philo->id - 1].id);
+		printf("%ld %d has taken a fork\n", total_ms, philo->id);
 		deref_forks[philo->id - 1].is_on_table = 0;
 		philo->number_of_forks++;
 	}
 	if (philo->number_of_forks == 1 && deref_forks[next_fork].is_on_table)
 	{
-		printf("%ld %d has taken 2º a fork: %d\n", \
-						total_ms, philo->id, deref_forks[next_fork].id);
+		if (total_ms % philo->args.time_to_eat != 0)
+			return ;
+		printf("%ld %d has taken a fork\n", total_ms, philo->id);
 		philo->last_time_get_fork = total_ms;
 		deref_forks[next_fork].is_on_table = 0;
 		philo->number_of_forks++;
