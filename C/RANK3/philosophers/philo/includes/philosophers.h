@@ -45,6 +45,7 @@ typedef struct s_data
 	int				dead;
 	int				satisfied;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	mutex_key;
 } t_data;
 
 

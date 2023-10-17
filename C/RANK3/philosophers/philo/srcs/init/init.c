@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:17:05 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/16 18:37:40 by user             ###   ########.fr       */
+/*   Updated: 2023/10/17 19:43:21 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_arguments(t_data *data, int argc, char *argv[])
 	if (argc == 6)
 		data->arguments.must_eat = ft_atoi(argv[5]);
 	else
-		data->arguments.must_eat = 0;
+		data->arguments.must_eat = -1;
 }
 
 void	init_philos(t_data *data)
@@ -65,7 +65,7 @@ void	init_philos(t_data *data)
 			data->philo[i].next_fork = &data->forks_mutex[0];
 		else
 			data->philo[i].next_fork = &data->forks_mutex[data->philo[i].id];
-		printf("0\t%d is thinking\n", data->philo[i].id);
+		// printf("0\t%d is thinking\n", data->philo[i].id);
 		i++;
 	}
 }

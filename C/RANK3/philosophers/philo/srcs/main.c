@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:21:14 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/16 20:25:01 by user             ###   ########.fr       */
+/*   Updated: 2023/10/17 19:46:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+// int	is_done(int philo_meals, t_data *data)
+// {
+// 	pthread_mutex_lock(&data->mutex_key);
+// 	if (data->dead)
+// 	{	
+// 		pthread_mutex_unlock(&data->mutex_key);
+// 		return (1);
+// 	}
+// 	pthread_mutex_unlock(&data->mutex_key);
+// 	return (0);
+// }
 
 void *routine(void *args)
 {
@@ -22,7 +34,22 @@ void *routine(void *args)
 	while (1)
 	{
 		philo_eat(&philo);
+
+		if (philo.meals == philo.data->arguments.must_eat || philo.data->dead)
+		{	
+			pthread_mutex_unlock(&philo.data->mutex_key);
+			break;
+		}
+
 		philo_sleep(philo);
+		pthread_mutex_lock(&philo.data->mutex_key);
+		if (philo.meals == philo.data->arguments.must_eat || philo.data->dead)
+		{	
+			pthread_mutex_unlock(&philo.data->mutex_key);
+			break;
+		}
+		pthread_mutex_unlock(&philo.data->mutex_key);
+
 		philo_think(philo);
 	}
 	return (NULL);
@@ -42,6 +69,7 @@ int	main(int argc, char *argv[])
 
 
 	pthread_mutex_init(&data.mutex, NULL);
+	pthread_mutex_init(&data.mutex_key, NULL);
 	i = -1;
 	while (++i < number_of_philosophers)
 		pthread_create(&data.philo[i].philo_thread, NULL, routine, &data.philo[i]);
@@ -57,6 +85,7 @@ int	main(int argc, char *argv[])
 		pthread_mutex_destroy(&data.forks_mutex[i++]);
 
 	pthread_mutex_destroy(&data.mutex);
+	pthread_mutex_destroy(&data.mutex_key);
 	return (0);
 } 
 
