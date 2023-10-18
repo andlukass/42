@@ -3,26 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:21:14 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/17 19:46:10 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/10/18 08:27:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-// int	is_done(int philo_meals, t_data *data)
-// {
-// 	pthread_mutex_lock(&data->mutex_key);
-// 	if (data->dead)
-// 	{	
-// 		pthread_mutex_unlock(&data->mutex_key);
-// 		return (1);
-// 	}
-// 	pthread_mutex_unlock(&data->mutex_key);
-// 	return (0);
-// }
+static int	is_done(t_philo philo)
+{
+	pthread_mutex_lock(&philo.data->mutex_key);
+	if (philo.meals == philo.data->arguments.must_eat || philo.data->dead)
+	{
+		// printf("philo: %d, encerrou2\n", philo.id);
+		if (philo.is_eating == 1)
+		{
+			pthread_mutex_unlock(philo.next_fork);
+			pthread_mutex_unlock(philo.own_fork);
+		}
+		pthread_mutex_unlock(&philo.data->mutex_key);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo.data->mutex_key);
+	return (0);
+}
 
 void *routine(void *args)
 {
@@ -33,24 +39,20 @@ void *routine(void *args)
 			usleep(1000);
 	while (1)
 	{
-		philo_eat(&philo);
+		if (is_done(philo))
+			break ;
 
-		if (philo.meals == philo.data->arguments.must_eat || philo.data->dead)
-		{	
-			pthread_mutex_unlock(&philo.data->mutex_key);
-			break;
-		}
+		philo_eat(&philo);
+		if (is_done(philo))
+			break ;
 
 		philo_sleep(philo);
-		pthread_mutex_lock(&philo.data->mutex_key);
-		if (philo.meals == philo.data->arguments.must_eat || philo.data->dead)
-		{	
-			pthread_mutex_unlock(&philo.data->mutex_key);
-			break;
-		}
-		pthread_mutex_unlock(&philo.data->mutex_key);
+		if (is_done(philo))
+			break ;
 
 		philo_think(philo);
+		if (is_done(philo))
+			break ;
 	}
 	return (NULL);
 }

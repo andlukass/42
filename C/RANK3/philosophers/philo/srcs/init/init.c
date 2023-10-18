@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:17:05 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/17 19:43:21 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/10/18 08:00:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	init_philos(t_data *data)
 		data->philo[i].id = i + 1;
 		data->philo[i].last_eat = 0;
 		data->philo[i].meals = 0;
+		data->philo[i].is_eating = 0;
 		data->philo[i].data = data;
 		data->philo[i].own_fork = &data->forks_mutex[data->philo[i].id - 1];
 		if (data->philo[i].id == number_of_philosophers)
