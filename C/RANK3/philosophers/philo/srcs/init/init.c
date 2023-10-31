@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:17:05 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/18 08:00:10 by user             ###   ########.fr       */
+/*   Updated: 2023/10/31 16:51:12 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,16 @@ void	init_philos(t_data *data)
 	{
 		data->philo[i].id = i + 1;
 		data->philo[i].last_eat = 0;
+		data->philo[i].last_sleep = 0;
 		data->philo[i].meals = 0;
-		data->philo[i].is_eating = 0;
+		data->philo[i].status = THINKING;
 		data->philo[i].data = data;
-		data->philo[i].own_fork = &data->forks_mutex[data->philo[i].id - 1];
-		if (data->philo[i].id == number_of_philosophers)
-			data->philo[i].next_fork = &data->forks_mutex[0];
+		data->philo[i].own_fork = data->philo[i].id - 1;
+		if (data->philo[i].id == \
+		data->philo[i].data->arguments.number_of_philosophers)
+			data->philo[i].next_fork = 0;
 		else
-			data->philo[i].next_fork = &data->forks_mutex[data->philo[i].id];
-		// printf("0\t%d is thinking\n", data->philo[i].id);
+			data->philo[i].next_fork = data->philo[i].id;
 		i++;
 	}
 }
@@ -87,7 +88,6 @@ int	init_variables(t_data *data, int argc, char *argv[])
 {
 	data->init_time = get_time();
 	data->dead = 0;
-	data->satisfied = 0;
 	get_arguments(data, argc, argv);
 	init_forks_mutex(data);
 	init_philos(data);

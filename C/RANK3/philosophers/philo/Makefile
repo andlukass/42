@@ -5,10 +5,12 @@ END := \033[0m
 SRCS = srcs/main.c srcs/init/init.c  srcs/utils/is_positive_number.c \
 		srcs/utils/ft_atoi.c srcs/utils/number_len_no_zero.c \
 		srcs/utils/get_time.c srcs/actions/actions.c \
+		srcs/utils/time_now.c srcs/actions/checkers.c \
+		srcs/utils/ft_wait.c srcs/utils/print_action.c
 
 OBJS = $(SRCS:%.c=%.o)
 
-CFLAGS = -pthread # -fsanitize=thread -g -Wall -Wextra -Werror
+CFLAGS = -pthread  -fsanitize=thread -g # -Wall -Wextra -Werror
 
 NAME = philo
 
