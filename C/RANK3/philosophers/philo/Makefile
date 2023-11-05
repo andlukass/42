@@ -7,7 +7,7 @@ SRCS = src/main.c src/init/init.c src/utils/is_positive_number.c \
 		src/actions/actions.c src/actions/checkers.c \
 		src/time/time.c
 
-OBJS = $(SRCS:%.c=%.o)
+OBJS = $(SRCS:%.c=.build/%.o)
 
 CFLAGS = -pthread -Wall -Wextra -Werror # -fsanitize=thread -g
 
@@ -19,11 +19,12 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "\n$(GREEN)> Compilation done!\n$(END)"
 
-%.o: %.c
-		@$(CC) $(CFLAGS) -c $< -o $@
+.build/%.o: %.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		@$(RM) $(OBJS)
+		@$(RM) -rf .build
 		@echo "\n$(RED)> Cleaned!\n$(END)"
 
 fclean:	clean
