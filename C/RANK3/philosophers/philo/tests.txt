@@ -1,5 +1,0 @@
-make ; ./philo 4 310 200 100 -- morre
-make ; ./philo 4 410 200 200 -- nao morre
-make ; ./philo 5 500 200 200 -- morre
-make ; ./philo 6 500 200 200 -- nao morre
-

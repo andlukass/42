@@ -6,13 +6,13 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:17:05 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/31 16:51:12 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/11/05 13:55:59 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
-int	is_arguments_invalid(int argc, char *argv[])
+int	is_args_invalid(int argc, char *argv[])
 {
 	int		index;
 	long	arg_in_number;
@@ -32,39 +32,45 @@ int	is_arguments_invalid(int argc, char *argv[])
 	return (0);
 }
 
-void	get_arguments(t_data *data, int argc, char *argv[])
+void	get_args(t_data *data, int argc, char *argv[])
 {
-	data->arguments.number_of_philosophers = ft_atoi(argv[1]);
-	data->arguments.time_to_die = ft_atoi(argv[2]);
-	data->arguments.time_to_eat = ft_atoi(argv[3]);
-	data->arguments.time_to_sleep = ft_atoi(argv[4]);
+	data->args.number_of_philo = ft_atoi(argv[1]);
+	data->args.time_to_die = ft_atoi(argv[2]);
+	data->args.time_to_eat = ft_atoi(argv[3]);
+	data->args.time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		data->arguments.must_eat = ft_atoi(argv[5]);
+		data->args.must_eat = ft_atoi(argv[5]);
 	else
-		data->arguments.must_eat = -1;
+		data->args.must_eat = -1;
+	if (ft_atoi(argv[1]) % 2 == 0)
+		data->args.time_to_think = data->args.time_to_eat \
+			- data->args.time_to_sleep;
+	else
+		data->args.time_to_think = data->args.time_to_eat;
 }
 
 void	init_philos(t_data *data)
 {
-	int	number_of_philosophers;
+	int	number_of_philo;
 	int	i;
 
 	i = 0;
-	number_of_philosophers = data->arguments.number_of_philosophers;
-	if (number_of_philosophers == 0)
+	number_of_philo = data->args.number_of_philo;
+	if (number_of_philo == 0)
 		return ;
-	data->philo = malloc(sizeof(t_philo) * number_of_philosophers);
-	while (i < number_of_philosophers)
+	data->philo = malloc(sizeof(t_philo) * number_of_philo);
+	while (i < number_of_philo)
 	{
 		data->philo[i].id = i + 1;
 		data->philo[i].last_eat = 0;
 		data->philo[i].last_sleep = 0;
+		data->philo[i].last_think = 0;
 		data->philo[i].meals = 0;
 		data->philo[i].status = THINKING;
 		data->philo[i].data = data;
 		data->philo[i].own_fork = data->philo[i].id - 1;
 		if (data->philo[i].id == \
-		data->philo[i].data->arguments.number_of_philosophers)
+		data->philo[i].data->args.number_of_philo)
 			data->philo[i].next_fork = 0;
 		else
 			data->philo[i].next_fork = data->philo[i].id;
@@ -78,7 +84,7 @@ void	init_forks_mutex(t_data *data)
 	int	i;
 
 	i = 0;
-	num_of_philosophers = data->arguments.number_of_philosophers;
+	num_of_philosophers = data->args.number_of_philo;
 	data->forks_mutex = malloc(sizeof(pthread_mutex_t) * num_of_philosophers);
 	while (i < num_of_philosophers)
 		pthread_mutex_init(&data->forks_mutex[i++], NULL);
@@ -86,10 +92,11 @@ void	init_forks_mutex(t_data *data)
 
 int	init_variables(t_data *data, int argc, char *argv[])
 {
-	data->init_time = get_time();
-	data->dead = 0;
-	get_arguments(data, argc, argv);
+	get_args(data, argc, argv);
 	init_forks_mutex(data);
 	init_philos(data);
-	return (data->arguments.number_of_philosophers);
+	data->init_time = 0;
+	data->init_time = time_now(data->philo[0]);
+	data->dead = 0;
+	return (data->args.number_of_philo);
 }

@@ -6,25 +6,34 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:25:40 by user              #+#    #+#             */
-/*   Updated: 2023/10/31 18:42:00 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:01:40 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
+static void	print_action(t_data *data, t_philo philo, char *action)
+{
+	pthread_mutex_lock(&data->mutex);
+	if (!data->dead)
+		printf("%ld\t%d %s\n", time_now(philo), philo.id, action);
+	if (action[0] == 'd')
+		data->dead = 1;
+	pthread_mutex_unlock(&data->mutex);
+}
+
 void	philo_die(t_philo philo)
 {
-	int	time_no_eat;
-
-	time_no_eat = time_now(philo) - philo.last_eat;
-	if (time_no_eat >= philo.data->arguments.time_to_die)
+	if (time_no_eat(philo) >= philo.data->args.time_to_die)
 		print_action(philo.data, philo, "died");
 }
 
 void	philo_eat(t_philo *philo)
 {
-	if (philo->status != THINKING || \
-	philo->data->arguments.number_of_philosophers == 1)
+	if (philo->status != THINKING || philo->data->args.number_of_philo == 1)
+		return ;
+	if (time_thinking(*philo) <= philo->data->args.time_to_think \
+			&& philo->last_think != 0)
 		return ;
 	if (philo->id % 2 == 0)
 	{
@@ -48,13 +57,10 @@ void	philo_eat(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
-	int	time_eating;
-
 	if (philo->status != EATING || \
-	philo->data->arguments.number_of_philosophers == 1)
+	philo->data->args.number_of_philo == 1)
 		return ;
-	time_eating = time_now(*philo) - philo->last_eat;
-	if (time_eating >= philo->data->arguments.time_to_eat)
+	if (time_eating(*philo) >= philo->data->args.time_to_eat)
 	{
 		pthread_mutex_unlock(&philo->data->forks_mutex[philo->own_fork]);
 		pthread_mutex_unlock(&philo->data->forks_mutex[philo->next_fork]);
@@ -66,20 +72,13 @@ void	philo_sleep(t_philo *philo)
 
 void	philo_think(t_philo *philo)
 {
-	int	time_spent_sleeping;
-
 	if (philo->status != SLEEPING || \
-	philo->data->arguments.number_of_philosophers == 1)
+	philo->data->args.number_of_philo == 1)
 		return ;
-	time_spent_sleeping = time_now(*philo) - philo->last_sleep;
-	if (time_spent_sleeping > philo->data->arguments.time_to_sleep)
+	if (time_sleeping(*philo) > philo->data->args.time_to_sleep)
 	{
 		philo->status = THINKING;
+		philo->last_think = time_now(*philo);
 		print_action(philo->data, *philo, "is thinking");
-		if (philo->data->arguments.number_of_philosophers % 2 == 0)
-			ft_wait(*philo, philo->data->arguments.time_to_eat - 
-				philo->data->arguments.time_to_sleep);
-		else
-			ft_wait(*philo, philo->data->arguments.time_to_eat);
 	}
 }

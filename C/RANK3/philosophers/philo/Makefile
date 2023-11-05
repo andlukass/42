@@ -2,15 +2,14 @@ GREEN := \033[32m
 RED := \033[31m
 END := \033[0m
 
-SRCS = srcs/main.c srcs/init/init.c  srcs/utils/is_positive_number.c \
-		srcs/utils/ft_atoi.c srcs/utils/number_len_no_zero.c \
-		srcs/utils/get_time.c srcs/actions/actions.c \
-		srcs/utils/time_now.c srcs/actions/checkers.c \
-		srcs/utils/ft_wait.c srcs/utils/print_action.c
+SRCS = src/main.c src/init/init.c src/utils/is_positive_number.c \
+		src/utils/ft_atoi.c src/utils/number_len_no_zero.c \
+		src/actions/actions.c src/actions/checkers.c \
+		src/time/time.c
 
 OBJS = $(SRCS:%.c=%.o)
 
-CFLAGS = -pthread  -fsanitize=thread -g # -Wall -Wextra -Werror
+CFLAGS = -pthread -Wall -Wextra -Werror # -fsanitize=thread -g
 
 NAME = philo
 

@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:41:51 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/31 18:43:19 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:02:31 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ struct	s_data;
 
 typedef struct s_args
 {
-	int	number_of_philosophers;
+	int	number_of_philo;
+	int	time_to_think;
 	int	time_to_sleep;
 	int	time_to_die;
 	int	time_to_eat;
@@ -41,6 +42,7 @@ typedef struct s_philo
 	pthread_t		philo_t;
 	long			last_sleep;
 	long			last_eat;
+	int				last_think;
 	int				next_fork;
 	int				own_fork;
 	int				status;
@@ -51,7 +53,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	pthread_mutex_t	*forks_mutex;
-	t_args			arguments;
+	t_args			args;
 	long			init_time;
 	t_philo			*philo;
 	pthread_mutex_t	mutex;
@@ -59,18 +61,21 @@ typedef struct s_data
 }	t_data;
 
 /*-------------UTILS----------------*/
-void		print_action(t_data *data, t_philo philo, char *action);
 int			number_len_no_zero(char *str);
 int			is_positive_number(char *str);
 long int	ft_atoi(const char *str);
+
+/*-------------TIME----------------*/
+int			time_no_eat(t_philo philo);
+int			time_thinking(t_philo philo);
+int			time_eating(t_philo philo);
+int			time_sleeping(t_philo philo);
 long int	time_now(t_philo philo);
-long int	get_time(void);
-void		ft_wait(t_philo philo, long time);
 
 /*-------------INIT----------------*/
 int			init_variables(t_data *data, int argc, char *argv[]);
-void		get_arguments(t_data *data, int argc, char *argv[]);
-int			is_arguments_invalid(int argc, char *argv[]);
+void		get_args(t_data *data, int argc, char *argv[]);
+int			is_args_invalid(int argc, char *argv[]);
 void		init_forks_mutex(t_data *data);
 void		init_philos(t_data *data);
 

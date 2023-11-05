@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:21:14 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/10/31 18:28:50 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:07:04 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	case_one(t_philo philo)
 {
-	if (philo.data->arguments.number_of_philosophers == 1)
+	if (philo.data->args.number_of_philo == 1)
 		printf("0\t1 has taken a fork\n");
 }
 
 static int	unlock_forks(t_philo philo)
 {
-	if (philo.data->arguments.number_of_philosophers == 1)
+	if (philo.data->args.number_of_philo == 1)
 	{
 		pthread_mutex_unlock(&philo.data->forks_mutex[philo.next_fork]);
 		return (1);
@@ -57,24 +57,26 @@ static void	*routine(void *args)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	int		number_of_philosophers;
+	int		number_of_philo;
 	int		i;
 
-	if ((argc != 5 && argc != 6) || is_arguments_invalid(argc, argv))
+	if ((argc != 5 && argc != 6) || is_args_invalid(argc, argv))
 		return (printf("Error\n"));
-	number_of_philosophers = init_variables(&data, argc, argv);
-	if (!number_of_philosophers)
+	number_of_philo = init_variables(&data, argc, argv);
+	if (!number_of_philo)
 		return (printf("Error\n"));
 	pthread_mutex_init(&data.mutex, NULL);
 	i = -1;
-	while (++i < number_of_philosophers)
+	while (++i < number_of_philo)
 		pthread_create(&data.philo[i].philo_t, NULL, routine, &data.philo[i]);
 	i = 0;
-	while (i < number_of_philosophers)
+	while (i < number_of_philo)
 		pthread_join(data.philo[i++].philo_t, NULL);
 	i = 0;
-	while (i < number_of_philosophers)
+	while (i < number_of_philo)
 		pthread_mutex_destroy(&data.forks_mutex[i++]);
 	pthread_mutex_destroy(&data.mutex);
+	free(data.forks_mutex);
+	free(data.philo);
 	return (0);
 }
