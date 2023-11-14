@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:21:14 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/11/05 14:07:04 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:10:44 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	main(int argc, char *argv[])
 	int		number_of_philo;
 	int		i;
 
+	if (argc == 6 && ft_atoi(argv[5]) == 0)
+		return (0);
 	if ((argc != 5 && argc != 6) || is_args_invalid(argc, argv))
 		return (printf("Error\n"));
 	number_of_philo = init_variables(&data, argc, argv);
