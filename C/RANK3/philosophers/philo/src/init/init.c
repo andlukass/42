@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:17:05 by llopes-d          #+#    #+#             */
-/*   Updated: 2023/11/05 13:55:59 by llopes-d         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:05:24 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ void	init_philos(t_data *data)
 		data->philo[i].status = THINKING;
 		data->philo[i].data = data;
 		data->philo[i].own_fork = data->philo[i].id - 1;
-		if (data->philo[i].id == \
-		data->philo[i].data->args.number_of_philo)
+		if (data->philo[i].id == data->args.number_of_philo)
 			data->philo[i].next_fork = 0;
 		else
 			data->philo[i].next_fork = data->philo[i].id;
