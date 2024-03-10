@@ -4,3 +4,6 @@
 [submodule "C/RANK4/Cub3d"]
 	path = C/RANK4/Cub3d
 	url = git@github.com:isbraz/Cub3d.git
+[submodule "C/RANK4/CPPS"]
+	path = C/RANK4/CPPS
+	url = git@github.com:andlukass/42CPPS.git
