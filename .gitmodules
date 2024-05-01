@@ -6,3 +6,7 @@
 	path = C/RANK4/CPPS
 	url = git@github.com:andlukass/42CPPS.git
 	branch = main
+[submodule "C/RANK3/minishell"]
+	path = C/RANK3/minishell
+	url = git@github.com:andlukass/minishell.git
+	branch = main
