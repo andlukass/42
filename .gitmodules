@@ -1,0 +1,9 @@
+[submodule "CommonCore/RANK4/Cub3d"]
+	path = CommonCore/RANK4/Cub3d
+	url = git@github.com:isbraz/Cub3d.git
+[submodule "CommonCore/RANK4/CPPS"]
+	path = CommonCore/RANK4/CPPS
+	url = git@github.com:andlukass/42CPPS.git
+[submodule "CommonCore/RANK3/minishell"]
+	path = CommonCore/RANK3/minishell
+	url = git@github.com:andlukass/minishell.git
