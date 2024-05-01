@@ -1,12 +1,12 @@
-[submodule "C/RANK4/Cub3d"]
+[submodule "CommonCore/RANK4/Cub3d"]
 	path = C/RANK4/Cub3d
 	url = git@github.com:isbraz/Cub3d.git
 	branch = main
-[submodule "C/RANK4/CPPS"]
+[submodule "CommonCore/RANK4/CPPS"]
 	path = C/RANK4/CPPS
 	url = git@github.com:andlukass/42CPPS.git
 	branch = main
-[submodule "C/RANK3/minishell"]
+[submodule "CommonCore/RANK3/minishell"]
 	path = C/RANK3/minishell
 	url = git@github.com:andlukass/minishell.git
 	branch = main
