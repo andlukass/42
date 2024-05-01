@@ -1,7 +1,3 @@
-[submodule "C/RANK3/minishell"]
-	path = C/RANK3/minishell
-	url = git@github.com:andlukass/minishell.git
-	branch = main
 [submodule "C/RANK4/Cub3d"]
 	path = C/RANK4/Cub3d
 	url = git@github.com:isbraz/Cub3d.git
